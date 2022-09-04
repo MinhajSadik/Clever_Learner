@@ -1,0 +1,9 @@
+{
+  "name": "clever_learner(backnend)",
+  "version": "1.0.0",
+  "description": "backend for clever_learner quiz app",
+  "main": "app.js",
+  "repository": "https://github.com/MinhajSadik/Clever_Learner",
+  "author": "MinhajSadik",
+  "license": "MIT"
+}
