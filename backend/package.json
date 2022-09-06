@@ -1,9 +1,26 @@
 {
-  "name": "clever_learner(backnend)",
+  "name": "backnend",
   "version": "1.0.0",
   "description": "backend for clever_learner quiz app",
   "main": "app.js",
   "repository": "https://github.com/MinhajSadik/Clever_Learner",
   "author": "MinhajSadik",
-  "license": "MIT"
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "devDependencies": {
+    "bcrypt": "^5.0.1",
+    "cloudinary": "^1.31.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-fileupload": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.5.4",
+    "morgan": "^1.10.0"
+  }
 }
