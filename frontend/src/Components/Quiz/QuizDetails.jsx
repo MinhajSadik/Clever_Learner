@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { allQuestion } from "../../redux/features/questionSlice";
-import Timer from "../../utils/Timer";
+import { getQuizById } from "../../redux/features/quizSlice";
+import Timer from "../../utils/timer";
 import Loading from "../Shared/Loading";
 import { AddQuestion } from "./AddQuestion";
 import { AddQuiz } from "./AddQuiz";
 
-const QuizDetails = () => {
-  const { user, loading, questions } = useSelector((state) => ({
+const QuizDetails = ({ questions = [], quizzes = [] }) => {
+  const { user, loading } = useSelector((state) => ({
     ...state.user,
-    ...state.question,
   }));
+
   const admin = user?.user?.role === "admin";
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -31,10 +31,8 @@ const QuizDetails = () => {
   };
 
   useEffect(() => {
-    dispatch(allQuestion());
-  }, [dispatch]);
-
-  // console.log(questions);
+    dispatch(getQuizById(id));
+  }, [dispatch, id]);
 
   return (
     <>
@@ -51,7 +49,7 @@ const QuizDetails = () => {
                 <div className="flex w-4/5 pl-24 ml-12">
                   <h1 className="text-2xl m-2 text-black-400/25">{num + 1} </h1>
                   <h1 className="text-2xl m-2 text-black-400/25">
-                    {questions[num]?.question}
+                    {quizzes?.question}
                   </h1>
                 </div>
 
@@ -86,18 +84,18 @@ const QuizDetails = () => {
                 </div>
               </div>
               <ol className=" w-3/5 ml-64">
-                {questions[num]?.options?.map((answer, index) => (
+                {quizzes?.quizzes?.options?.map((answer, index) => (
                   <li
                     key={index}
                     className="
-                   notshow border border-gray-300 text-center cursor-pointer m-2 p-2 rounded-lg
+                   notshow border border-gray-300 cursor-pointer m-2 p-2 rounded-lg
                 "
                     onClick={(e) => {
                       // setAns([...ans, answer.option]);
                       // handleQue(index);
                     }}
                   >
-                    {answer.option}
+                    👉 {answer.option}
                   </li>
                 ))}
               </ol>

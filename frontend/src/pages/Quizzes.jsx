@@ -31,9 +31,8 @@ const Quizzes = () => {
             </h1>
           </div>
           <div className="flex m-5 p-5">
-            {quizzes.map((quiz) => (
-              <Quiz key={quiz._id} quiz={quiz} />
-            ))}
+            {quizzes &&
+              quizzes.map((quiz) => <Quiz key={quiz._id} quiz={quiz} />)}
           </div>
         </div>
       )}

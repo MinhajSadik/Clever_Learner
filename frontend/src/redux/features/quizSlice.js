@@ -14,11 +14,11 @@ export const allQuiz = createAsyncThunk(
 );
 
 export const getQuizById = createAsyncThunk(
-  "quiz/id",
+  "quiz/getById",
   async (id, { rejectWithValue }) => {
     try {
       const { data } = api.quizById(id);
-
+      console.log("data", data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -53,6 +53,7 @@ const quizSlice = createSlice({
     [getQuizById.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.quiz = payload;
+      localStorage.setItem("quiz", JSON.stringify({ ...payload }));
     },
     [getQuizById.rejected]: (state, { payload }) => {
       state.loading = false;

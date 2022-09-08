@@ -10,7 +10,7 @@ router.post(
   authorizeRoles("admin"),
   questionController.addQuestion
 );
-router.get("/all", questionController.allQuestion);
-router.get("/:id", questionController.questionById);
+router.get("/all", checkAuth, questionController.allQuestion);
+router.get("/:id", checkAuth, questionController.questionById);
 
 export default router;
