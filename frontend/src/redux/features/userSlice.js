@@ -8,11 +8,11 @@ export const loginUser = createAsyncThunk(
     try {
       const { data } = await api.loginUser(loginInfo);
       navigate("/");
-      toast.success("Logged In Success");
+      toast.success("Logged In Successed");
       return data;
     } catch (error) {
-      toast.error(error.message);
-      return rejectWithValue(error.message);
+      toast.error(error);
+      return rejectWithValue(error);
     }
   }
 );
@@ -23,11 +23,11 @@ export const registerUser = createAsyncThunk(
     try {
       const { data } = await api.registerUser(registerInfo);
       navigate("/");
-      toast.success("Register Success");
+      toast.success("Register Successed");
       return data;
     } catch (error) {
-      toast.error(error.message);
-      return rejectWithValue(error.message);
+      toast.error(error);
+      return rejectWithValue(error);
     }
   }
 );

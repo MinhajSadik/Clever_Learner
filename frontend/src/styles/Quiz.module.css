@@ -1,12 +1,13 @@
 .quiz {
-  max-width: 400px;
-  height: fit-content;
+  max-width: 300px;
+  height: 100;
   background-color: #fff;
   border: 1px solid #e5e5e5;
   padding: 10px;
   border-radius: 4px;
   cursor: pointer;
   padding-bottom: 1rem;
+  margin: 5px;
 }
 
 .quiz:hover {
@@ -28,13 +29,13 @@
   object-fit: cover;
 }
 
-.quiz .qmeta {
+.quiz .meta {
   display: flex;
   justify-content: space-between;
   padding-right: 6px;
 }
 
-.quiz .qmeta p {
+.quiz .meta p {
   font-size: 15px;
   font-weight: 400;
 }

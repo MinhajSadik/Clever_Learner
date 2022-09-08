@@ -34,12 +34,12 @@ const Navbar = () => {
           {admin && (
             <>
               <li className="w-full">
-                <Link className={navLink} to={`/dashboard/${user?.user?._id}`}>
+                <Link className={navLink} to={`/dashboard`}>
                   Dashboard
                 </Link>
               </li>
               <li className="w-full">
-                <Link className={navLink} to={`/users/${user?.user?._id}`}>
+                <Link className={navLink} to={`/users`}>
                   Users
                 </Link>
               </li>

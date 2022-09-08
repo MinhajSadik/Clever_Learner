@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import QuizDetails from "./Components/Quiz/QuizDetails";
 import Navbar from "./Components/Shared/Navbar";
 import Login from "./Components/User/Login";
 import Register from "./Components/User/Register";
@@ -25,6 +26,7 @@ const App = () => {
       <Routes>
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/" element={<Quizzes />} />
+        <Route path="/:id" element={<QuizDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
