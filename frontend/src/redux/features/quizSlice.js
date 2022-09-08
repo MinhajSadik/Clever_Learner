@@ -53,7 +53,7 @@ const quizSlice = createSlice({
     [getQuizById.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.quiz = payload;
-      localStorage.setItem("quiz", JSON.stringify({ ...payload }));
+      // localStorage.setItem("quiz", JSON.stringify({ ...payload }));
     },
     [getQuizById.rejected]: (state, { payload }) => {
       state.loading = false;
