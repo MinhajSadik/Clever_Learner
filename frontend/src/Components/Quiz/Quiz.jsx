@@ -4,9 +4,9 @@ const Quiz = ({ quiz }) => {
   return (
     <div className={classes.quiz}>
       <Link to={quiz._id}>
-        <img src={quiz.image.url} alt={quiz.name} />
+        <img src={quiz.image?.url} alt={quiz.name} />
         <p># {quiz.name}</p>
-        <p>{quiz.description}</p>
+        <p>#{quiz.description}</p>
         <div className={classes.meta}>
           <p>{quiz.quizzes.length} Questions</p>
           <p>Price : {quiz.price}</p>

@@ -6,5 +6,6 @@ const router = Router();
 
 router.post("/add", checkAuth, authorizeRoles("admin"), quizController.addQuiz);
 router.get("/all", checkAuth, quizController.allQuiz);
+router.get("/:id", checkAuth, quizController.quizById);
 
 export default router;

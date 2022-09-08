@@ -1,0 +1,41 @@
+.uploadImage > img {
+  width: 3vmax;
+  border-radius: 100%;
+  margin: -1vmax;
+}
+.uploadImage {
+  display: flex;
+  margin-bottom: 7px;
+}
+.uploadImage > input {
+  display: flex;
+  padding: 0%;
+  margin-left: auto;
+}
+
+.uploadImage > input::file-selector-button {
+  cursor: pointer;
+  width: 100%;
+  z-index: 2;
+  height: 5vh;
+  border: none;
+  margin: 0%;
+  font: 400 0.8vmax cursive;
+  transition: all 0.5s;
+  padding: 0 1vmax;
+  color: rgba(0, 0, 0, 0.623);
+  background-color: rgb(255, 255, 255);
+}
+
+.uploadImage > input::file-selector-button:hover {
+  background-color: rgb(235, 235, 235);
+}
+.uploadImage > img {
+  width: 6vmax;
+  border-radius: 100%;
+}
+
+.uploadImage > input::file-selector-button {
+  height: 7vh;
+  font: 400 1.8vmax cursive;
+}

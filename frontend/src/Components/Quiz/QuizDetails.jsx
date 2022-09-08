@@ -2,19 +2,21 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { allQuestion } from "../../redux/features/questionSlice";
-import Timer from "../../utils/timer";
+import Timer from "../../utils/Timer";
 import { AddQuestion } from "./AddQuestion";
 import { AddQuiz } from "./AddQuiz";
 
 const QuizDetails = () => {
-  const { user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => ({
+    ...state.user,
+  }));
   const admin = user?.user?.role === "admin";
   const { id } = useParams();
   const dispatch = useDispatch();
   const [quizOpen, setQuizOpen] = useState(false);
   const [questionOpen, setQuestionOpen] = useState(false);
-  // const [time, setTime] = useState(0);
   const [open, setOpen] = useState(false);
+  const [num, setNum] = useState(0);
 
   const handleQuizOpen = () => {
     setQuizOpen(!quizOpen);
@@ -30,6 +32,8 @@ const QuizDetails = () => {
     dispatch(allQuestion());
   }, [dispatch]);
 
+  // console.log(quiz);
+
   return (
     <div>
       {quizOpen && <AddQuiz id={id} />}
@@ -39,22 +43,24 @@ const QuizDetails = () => {
         <div className="w-full shadow-lg  m-4 p-4 ml-12">
           <div className="flex justify-between align-middle">
             <div className="flex w-4/5 pl-24 ml-12">
-              <h1 className="text-2xl m-2 text-black-400/25">{"Minhaj"}</h1>
+              <h1 className="text-2xl m-2 text-black-400/25">{num + 1} </h1>
               <h1 className="text-2xl m-2 text-black-400/25">
                 {/* {questionArr[num]?.questions} */}
+                minhaj
               </h1>
             </div>
+
             {admin && (
               <div className="">
                 <button
-                  className="border-teal-500 rounded-2xl absolute  right-24 top-32 border-2 mb-8 p-1 pl-3  pr-2"
+                  className="border-teal-500 rounded-2xl absolute right-16 top-32 border-2 mb-8 p-1 pl-3  pr-2"
                   type="button"
                   onClick={handleQuizOpen}
                 >
                   Add Quiz
                 </button>
                 <button
-                  className="border-teal-500 rounded-2xl absolute right-48 top-32 border-2 mb-8 p-1 pl-3 pr-2"
+                  className="border-teal-500 rounded-2xl absolute  right-44 top-32 border-2 mb-8 p-1 pl-3 pr-2"
                   type="button"
                   onClick={handleQuestionOpen}
                 >
@@ -62,9 +68,19 @@ const QuizDetails = () => {
                 </button>
               </div>
             )}
-            <div className="">Time: {<Timer duration="quiz_based" />}</div>
+            {!admin && (
+              <p className="border-teal-500 rounded-2xl absolute right-16 top-32 border-2 mb-8 p-1 pl-3 pr-2">
+                Attempted : {num + "/" + 10}
+              </p>
+            )}
             <div className=" font-serif text-slate-900">
-              {/* {num + "/" + (questionArr.length)} */}
+              {/* <div className=""> */}
+              Time Left: {<Timer duration="question_based" />}
+              {/* </div> */}
+              <div>
+                {/* {num + "/" + (questionArr.length)} */}
+                Questions: 10
+              </div>
             </div>
           </div>
           <ol className=" w-3/5 ml-64">
@@ -83,8 +99,10 @@ const QuizDetails = () => {
                 }}
               >
                 {answer.option}
+                who are you
               </li>
             ))} */}
+            what you are doing
           </ol>
           <div className="mt-3 ml-80 pl-48">
             <button

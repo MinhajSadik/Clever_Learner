@@ -6,7 +6,7 @@ export default function useTimer() {
 
     let endTime = new Date();
     endTime.setMinutes(endTime.getMinutes() + duration);
-    let hour = duration;
+
     let min = duration;
     let sec = 0;
 

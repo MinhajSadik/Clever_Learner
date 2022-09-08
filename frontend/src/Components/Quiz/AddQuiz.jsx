@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import classes from "../../styles/AddQuiz.module.css";
 
 export const AddQuiz = ({ id }) => {
+  const [imagePreview, setImagePreview] = useState("./imagePreview.png");
   const submitQuiz = () => {};
   console.log(id);
   return (
@@ -50,6 +52,99 @@ export const AddQuiz = ({ id }) => {
             placeholder="Price"
             // onChange={(event) => setQuiz({ ...quiz, correctAnswer: event.target.value })}
           />
+          <div className="flex  gap-1 ">
+            <input
+              className="w-1/2 block  bg-gray-200 text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              type="text"
+              placeholder="Quiz Time Duration"
+              disabled
+              name="option"
+              // value={x.option}
+              // onChange={(e) => {
+              //   handleType(x.id)(e);
+              // }}
+            />
+            <select
+              className="form-select appearance-none
+                  block
+                  w-1/2
+                  px-3
+                h-9
+                  text-base
+                  font-normal
+                  text-gray-700
+                  bg-white bg-clip-padding bg-no-repeat
+                  border border-solid border-gray-300
+                  rounded
+                  transition
+                  ease-in-out
+                  m-0
+                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              // name="isCorrect"
+              id=""
+              v-model="allowMultiple"
+              // value={x.boolean}
+              // onChange={(e) => {
+              //   handleType(x.id)(e);
+              // }}
+            >
+              <option value="">Select One</option>
+              <option value={true}>Question Based</option>
+              <option value={true}>Quiz Based</option>
+            </select>
+          </div>
+          <div className="flex gap-1 ">
+            <input
+              className="w-1/2 block  bg-gray-200 text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              type="text"
+              placeholder="Answer Showing Option"
+              disabled
+              name="option"
+              // value={x.option}
+              // onChange={(e) => {
+              //   handleType(x.id)(e);
+              // }}
+            />
+            <select
+              className="form-select appearance-none
+                  block
+                  w-1/2
+                  px-3
+                h-9
+                  text-base
+                  font-normal
+                  text-gray-700
+                  bg-white bg-clip-padding bg-no-repeat
+                  border border-solid border-gray-300
+                  rounded
+                  transition
+                  ease-in-out
+                  m-0
+                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              // name="isCorrect"
+              id=""
+              v-model="allowMultiple"
+              // value={x.boolean}
+              // onChange={(e) => {
+              //   handleType(x.id)(e);
+              // }}
+            >
+              <option value="">Select One</option>
+              <option value={true}>Question Based</option>
+              <option value={true}>Quiz Based</option>
+            </select>
+          </div>
+          <div className={classes.uploadImage}>
+            <img src={imagePreview} alt="quizImage" />
+            <input
+              type="file"
+              className="w-1/2 block  bg-gray-200 text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              required
+              name="image"
+              accept="image/*"
+              // onChange={updateProfileDataChange}
+            />
+          </div>
           <div className="flex">
             <button
               onClick={submitQuiz}

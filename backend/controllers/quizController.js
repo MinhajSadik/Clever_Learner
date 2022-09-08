@@ -50,11 +50,15 @@ const quizController = {
   quizById: async (req, res, next) => {
     const { id } = req.params;
     try {
-      const quiz = await Quiz.findById(id);
+      const quiz = await Quiz.findById(id).populate({
+        path: "quizzes",
+      });
 
       if (!quiz) {
         return next(new ErrorHandler(`There are no quiz available ${id}`, 404));
       }
+
+      return res.status(200).json(quiz);
     } catch (error) {
       return res.status(500).json({
         status: false,

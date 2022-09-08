@@ -14,7 +14,6 @@ const Timer = ({ duration }) => {
     endTime.setMinutes(endTime.getMinutes() + duration);
 
     let min = durations;
-    let hr = 1;
     let sec = 0;
 
     let interval = setInterval(() => {
@@ -22,7 +21,6 @@ const Timer = ({ duration }) => {
       if (sec === -1) {
         sec = 59;
         min--;
-        hr--;
       }
       let newValue = (
         <>
@@ -31,13 +29,13 @@ const Timer = ({ duration }) => {
           <span className="seconds">{formatNumber(sec)}</span>
         </>
       );
-      if (hr === 0 && min === 0 && sec === 0) {
+      if (min === 0 && sec === 0) {
         clearInterval(interval);
       }
       setTime(newValue);
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [duration]);
   let formatNumber = (num) => {
     return num.toLocaleString("en-US", {
       minimumIntegerDigits: 2,
