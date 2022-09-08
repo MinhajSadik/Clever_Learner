@@ -25,7 +25,7 @@ const quizSchema = new Schema(
     // },
     price: {
       type: String,
-      default: free,
+      default: "free",
       enum: ["free", 0, undefined, "paid"],
     },
     quizzes: [

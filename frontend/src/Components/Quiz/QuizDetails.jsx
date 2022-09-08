@@ -13,9 +13,8 @@ const QuizDetails = () => {
   const dispatch = useDispatch();
   const [quizOpen, setQuizOpen] = useState(false);
   const [questionOpen, setQuestionOpen] = useState(false);
-  const [time, setTime] = useState(0);
+  // const [time, setTime] = useState(0);
   const [open, setOpen] = useState(false);
-  console.log(id);
 
   const handleQuizOpen = () => {
     setQuizOpen(!quizOpen);

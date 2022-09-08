@@ -1,8 +1,8 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 const Dashboard = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // const submitQuiz = () => {};
 
