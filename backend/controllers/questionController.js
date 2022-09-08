@@ -62,6 +62,25 @@ const questionController = {
       });
     }
   },
+  questionByQuizId: async (req, res, next) => {
+    const { id } = req.params;
+    try {
+      const quizQuestion = await Quiz.findById(id);
+
+      if (quizQuestion) {
+        return next(
+          new ErrorHandler(`There are no matched quiz question: ${id}`, 404)
+        );
+      }
+
+      return res.status(200).json(quizQuestion);
+    } catch (error) {
+      return res.status(500).json({
+        status: false,
+        message: error.message,
+      });
+    }
+  },
 };
 
 export default questionController;

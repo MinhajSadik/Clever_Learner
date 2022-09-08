@@ -8,8 +8,9 @@ import { AddQuestion } from "./AddQuestion";
 import { AddQuiz } from "./AddQuiz";
 
 const QuizDetails = ({ questions = [], quizzes = [] }) => {
-  const { user, loading } = useSelector((state) => ({
+  const { user, quiz, loading } = useSelector((state) => ({
     ...state.user,
+    ...state.quiz,
   }));
 
   const admin = user?.user?.role === "admin";
@@ -49,7 +50,7 @@ const QuizDetails = ({ questions = [], quizzes = [] }) => {
                 <div className="flex w-4/5 pl-24 ml-12">
                   <h1 className="text-2xl m-2 text-black-400/25">{num + 1} </h1>
                   <h1 className="text-2xl m-2 text-black-400/25">
-                    {quizzes?.question}
+                    {quiz?.quizzes?.question}
                   </h1>
                 </div>
 
@@ -84,7 +85,7 @@ const QuizDetails = ({ questions = [], quizzes = [] }) => {
                 </div>
               </div>
               <ol className=" w-3/5 ml-64">
-                {quizzes?.quizzes?.options?.map((answer, index) => (
+                {quiz?.quizzes?.options?.map((option, index) => (
                   <li
                     key={index}
                     className="
@@ -95,7 +96,7 @@ const QuizDetails = ({ questions = [], quizzes = [] }) => {
                       // handleQue(index);
                     }}
                   >
-                    👉 {answer.option}
+                    👉 {option.option}
                   </li>
                 ))}
               </ol>

@@ -58,7 +58,7 @@ const quizController = {
         return next(new ErrorHandler(`There are no quiz available ${id}`, 404));
       }
 
-      return res.status(200).json(quiz);
+      return res.status(200).json({ quiz });
     } catch (error) {
       return res.status(500).json({
         status: false,
