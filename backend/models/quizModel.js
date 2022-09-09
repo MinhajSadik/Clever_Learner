@@ -26,7 +26,7 @@ const quizSchema = new Schema(
     price: {
       type: String,
       default: "free",
-      enum: ["free", 0, undefined, "paid"],
+      enum: ["free", "paid"],
     },
     quizzes: [
       {
@@ -35,8 +35,8 @@ const quizSchema = new Schema(
       },
     ],
     duration: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: "question_based",
       enum: ["question_based", "quiz_based"],
     },
     answerType: {
