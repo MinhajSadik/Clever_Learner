@@ -1,11 +1,54 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import classes from "../../styles/AddQuiz.module.css";
 
 export const AddQuiz = ({ id }) => {
-  const [imagePreview, setImagePreview] = useState("./imagePreview.png");
-  const submitQuiz = () => {};
+  const dispatch = useDispatch();
+  const [imagePreview, setImagePreview] = useState("/imagePreview.png");
+  const [image, setImage] = useState("/imagePreview.png");
+  const initialState = {
+    name: "",
+    description: "",
+    price: "",
+    duration: "",
+    answerType: "",
+    image: image,
+  };
 
-  console.log(id);
+  const [quizInfo, setQuizInfo] = useState(initialState);
+
+  const { name, description, price, duration, answerType } = quizInfo;
+  console.log(quizInfo);
+  const onInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setQuizInfo({ ...quizInfo, [name]: value });
+  };
+
+  const quizImageUpload = (e) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setImagePreview(reader.result);
+        setImage(reader.result);
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
+  const submitQuiz = (e) => {
+    const profileData = new FormData();
+
+    profileData.set("name", name);
+    profileData.set("description", description);
+    profileData.set("price", price);
+    profileData.set("image", image);
+    profileData.set("duration", duration);
+    profileData.set("answerType", answerType);
+
+    dispatch();
+  };
+
   return (
     <div className="w-10/12 flex  text-slate-50 justify-center">
       <div className="">
@@ -15,43 +58,49 @@ export const AddQuiz = ({ id }) => {
         <form className="mt-6">
           <label
             className="block uppercase tracking-wide text-xs font-bold mb-2 text-black"
-            htmlFor="grid-first-name"
+            htmlFor="name"
           >
             Name{" "}
           </label>
           <input
             className=" block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            id="grid-first-name"
+            id="name"
             type="text"
             placeholder="Name"
-            // onChange={(event) => setQuiz({ ...quiz, questions: event.target.value }) }
+            value={name}
+            name="name"
+            onChange={onInputChange}
           />
 
           <label
             className="block uppercase tracking-wide  text-xs font-bold mb-2 text-black"
-            htmlFor="grid-first-name"
+            htmlFor="description"
           >
             Description
           </label>
           <input
             className=" block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            id="grid-first-name"
+            id="description"
             type="text"
             placeholder="Description"
-            // onChange={(event) => setQuiz({ ...quiz, correctAnswer: event.target.value })}
+            value={description}
+            name="description"
+            onChange={onInputChange}
           />
           <label
             className="block uppercase tracking-wide  text-xs font-bold mb-2 text-black"
-            htmlFor="grid-first-name"
+            htmlFor="price"
           >
             Price
           </label>
           <input
             className=" block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            id="grid-first-name"
+            id="price"
             type="text"
             placeholder="Price"
-            // onChange={(event) => setQuiz({ ...quiz, correctAnswer: event.target.value })}
+            value={price}
+            name="price"
+            onChange={onInputChange}
           />
           <div className="flex  gap-1 ">
             <input
@@ -59,11 +108,6 @@ export const AddQuiz = ({ id }) => {
               type="text"
               placeholder="Quiz Time Duration"
               disabled
-              name="option"
-              // value={x.option}
-              // onChange={(e) => {
-              //   handleType(x.id)(e);
-              // }}
             />
             <select
               className="form-select appearance-none
@@ -81,17 +125,15 @@ export const AddQuiz = ({ id }) => {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              // name="isCorrect"
-              id=""
+              name="duration"
+              id="duration"
               v-model="allowMultiple"
-              // value={x.boolean}
-              // onChange={(e) => {
-              //   handleType(x.id)(e);
-              // }}
+              value={duration}
+              onChange={onInputChange}
             >
               <option value="">Select One</option>
-              <option value={true}>Question Based</option>
-              <option value={true}>Quiz Based</option>
+              <option value="question_based">Question Based</option>
+              <option value="quiz_based">Quiz Based</option>
             </select>
           </div>
           <div className="flex gap-1 ">
@@ -100,11 +142,7 @@ export const AddQuiz = ({ id }) => {
               type="text"
               placeholder="Answer Showing Option"
               disabled
-              name="option"
-              // value={x.option}
-              // onChange={(e) => {
-              //   handleType(x.id)(e);
-              // }}
+              name="answerType"
             />
             <select
               className="form-select appearance-none
@@ -122,17 +160,15 @@ export const AddQuiz = ({ id }) => {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              // name="isCorrect"
-              id=""
+              name="answerType"
+              id="answerType"
               v-model="allowMultiple"
-              // value={x.boolean}
-              // onChange={(e) => {
-              //   handleType(x.id)(e);
-              // }}
+              value={answerType}
+              onChange={onInputChange}
             >
               <option value="">Select One</option>
-              <option value={true}>Question Based</option>
-              <option value={true}>Quiz Based</option>
+              <option value="question_based">Question Based</option>
+              <option value="quiz_based">Quiz Based</option>
             </select>
           </div>
           <div className={classes.uploadImage}>
@@ -143,7 +179,7 @@ export const AddQuiz = ({ id }) => {
               required
               name="image"
               accept="image/*"
-              // onChange={updateProfileDataChange}
+              onChange={quizImageUpload}
             />
           </div>
           <div className="flex">

@@ -15,9 +15,9 @@ const API = axios.create({
 console.log(REACT_APP_DEV_API, REACT_APP_PROD_API, devEnv);
 
 API.interceptors.request.use((req) => {
-  if (localStorage.getItem("token")) {
+  if (sessionStorage.getItem("token")) {
     req.headers.Authorization = `Bearer ${
-      JSON.parse(localStorage.getItem("token")).token
+      JSON.parse(sessionStorage.getItem("token")).token
     }`;
   }
   // console.log("API token", localStorage.getItem("token"));

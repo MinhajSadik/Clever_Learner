@@ -13,6 +13,8 @@ const QuizDetails = () => {
   }));
 
   const admin = user?.user?.role === "admin";
+  const isEnrolled = localStorage.getItem("quiz");
+
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -42,7 +44,7 @@ const QuizDetails = () => {
 
   const handleEnroll = () => {
     navigate("/quiz/play");
-    localStorage.setItem("quiz", JSON.stringify({ ...quiz.quizzes }));
+    localStorage.setItem("quiz", JSON.stringify({ ...quiz }));
   };
 
   useEffect(() => {
@@ -75,11 +77,11 @@ const QuizDetails = () => {
                   </p>
                   <p className="text-2xl m-2 text-black-400/25">
                     {/* {quizzes?.question} */}
-                    Quiz Time: {quiz.duration || "question_based"}
+                    Quiz Time: {quiz.duration}
                   </p>
                   <p className="text-2xl m-2 text-black-400/25">
                     {/* {quizzes?.question} */}
-                    Show Answer: {quiz.showAnser}
+                    Show Answer: {quiz.answerType}
                   </p>
                 </div>
                 {admin && (
@@ -106,7 +108,7 @@ const QuizDetails = () => {
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute right-36 top-36"
                 onClick={handleEnroll}
               >
-                Enroll
+                {isEnrolled ? "Enrolled" : "Enroll"}
               </button>
             </div>
           </div>

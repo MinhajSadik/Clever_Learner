@@ -1,16 +1,18 @@
 .uploadImage > img {
-  width: 3vmax;
+  width: auto;
+  height: 50%;
   border-radius: 100%;
-  margin: -1vmax;
 }
 .uploadImage {
   display: flex;
-  margin-bottom: 7px;
+  margin-bottom: 5px;
 }
 .uploadImage > input {
   display: flex;
   padding: 0%;
   margin-left: auto;
+  width: 50%;
+  height: 50%;
 }
 
 .uploadImage > input::file-selector-button {
@@ -36,6 +38,6 @@
 }
 
 .uploadImage > input::file-selector-button {
-  height: 7vh;
+  height: 5vh;
   font: 400 1.8vmax cursive;
 }

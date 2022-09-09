@@ -5,16 +5,17 @@ import Timer from "../../utils/timer";
 import Loading from "../Shared/Loading";
 
 const PlayQuiz = () => {
-  const { user, loading } = useSelector((state) => ({
+  const { user, loading, quiz } = useSelector((state) => ({
     ...state.user,
     ...state.quiz,
   }));
 
-  const quizzes = JSON.parse(localStorage.getItem("quiz"));
+  const quizzes = JSON.parse(localStorage.getItem(`${quiz.name}`));
 
-  console.log(quizzes);
+  
 
   const admin = user?.user?.role === "admin";
+
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -62,7 +63,7 @@ const PlayQuiz = () => {
                 </div>
               </div>
               <ol className=" w-3/5 ml-64">
-                {quizzes?.options?.map((option, index) => (
+                {quizzes?.quizzes?.options?.map((option, index) => (
                   <li
                     key={index}
                     className="

@@ -5,7 +5,8 @@ import ErrorHandler from "../utils/errorHandler.js";
 const quizController = {
   addQuiz: async (req, res) => {
     try {
-      const { name, description, image, price } = req.body;
+      const { name, description, image, price, duration, answerType } =
+        req.body;
 
       const myCloud = await cloudinary.v2.uploader.upload(image, {
         folder: "quiz",
@@ -19,6 +20,8 @@ const quizController = {
           public_id: myCloud.public_id,
           url: myCloud.secure_url,
         },
+        duration,
+        answerType,
       });
 
       return res.status(201).json(quiz);
