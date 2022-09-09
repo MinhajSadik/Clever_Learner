@@ -28,6 +28,8 @@ export const loginUser = (loginInfo) => API.post("/api/user/login", loginInfo);
 export const registerUser = (registerInfo) =>
   API.post("/api/user/register", registerInfo);
 
+export const addQuiz = (quizData) => API.post(`/api/quiz/add`, quizData);
+
 export const allQuiz = () => API.get("/api/quiz/all");
 
 export const quizById = (id) => API.get(`/api/quiz/${id}`);

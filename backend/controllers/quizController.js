@@ -1,4 +1,4 @@
-// import cloudinary from "cloudinary";
+import cloudinary from "cloudinary";
 import Quiz from "../models/quizModel.js";
 import ErrorHandler from "../utils/errorHandler.js";
 

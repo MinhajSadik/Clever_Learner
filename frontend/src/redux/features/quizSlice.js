@@ -25,6 +25,18 @@ export const getQuizById = createAsyncThunk(
   }
 );
 
+export const addQuiz = createAsyncThunk(
+  "quiz/add",
+  async (quizData, { rejectWithValue }) => {
+    try {
+      const { data } = await api.addQuiz(quizData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const quizSlice = createSlice({
   name: "quiz",
   initialState: {
@@ -54,6 +66,17 @@ const quizSlice = createSlice({
       state.quiz = payload;
     },
     [getQuizById.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    },
+    [addQuiz.pending]: (state) => {
+      state.loading = true;
+    },
+    [addQuiz.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.quizzes = payload;
+    },
+    [addQuiz.rejected]: (state, { payload }) => {
       state.loading = false;
       state.error = payload;
     },

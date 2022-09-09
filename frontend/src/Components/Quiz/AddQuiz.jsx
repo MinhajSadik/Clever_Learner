@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { addQuiz } from "../../redux/features/quizSlice";
 import classes from "../../styles/AddQuiz.module.css";
 
 export const AddQuiz = ({ id }) => {
@@ -37,16 +38,16 @@ export const AddQuiz = ({ id }) => {
   };
 
   const submitQuiz = (e) => {
-    const profileData = new FormData();
+    const quizData = new FormData();
 
-    profileData.set("name", name);
-    profileData.set("description", description);
-    profileData.set("price", price);
-    profileData.set("image", image);
-    profileData.set("duration", duration);
-    profileData.set("answerType", answerType);
+    quizData.set("name", name);
+    quizData.set("description", description);
+    quizData.set("price", price);
+    quizData.set("image", image);
+    quizData.set("duration", duration);
+    quizData.set("answerType", answerType);
 
-    dispatch();
+    dispatch(addQuiz(quizData));
   };
 
   return (
