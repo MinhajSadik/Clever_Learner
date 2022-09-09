@@ -28,7 +28,7 @@ export const getQuizById = createAsyncThunk(
 const quizSlice = createSlice({
   name: "quiz",
   initialState: {
-    quiz: [{}],
+    quiz: [],
     quizzes: [],
     error: "",
     loading: false,

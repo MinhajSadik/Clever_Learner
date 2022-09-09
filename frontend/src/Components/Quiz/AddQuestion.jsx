@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export const AddQuestion = () => {
+export const AddQuestion = ({ id }) => {
   const data = useSelector((state) => state.quiz);
   const dispatch = useDispatch();
   // console.log(data);
@@ -13,11 +13,12 @@ export const AddQuestion = () => {
   ]);
 
   const [quiz, setQuiz] = useState({
-    title: "",
     questions: "",
     options: ans,
     correctAnswer: "",
   });
+
+  console.log(id)
 
   // console.log(ans);
 
@@ -27,16 +28,7 @@ export const AddQuestion = () => {
     console.log(quiz);
     // dispatch(quizSuccess(quiz));
   };
-  const handleUploadnew = (event) => {
-    event.preventDefault();
-    const obj = {
-      title: data[0].title,
-      questionArray: data,
-    };
-    console.log("handleUploadnew", obj);
 
-    // dispatch(postQuizObj(obj));
-  };
   const handleType = (id) => (event) => {
     const { name, value } = event.target;
     setAns((prev) =>
@@ -139,15 +131,9 @@ export const AddQuestion = () => {
           <div className="flex">
             <button
               onClick={handleQuiz}
-              className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded "
-            >
-              Submit
-            </button>
-            <button
-              onClick={handleUploadnew}
               className=" bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ml-auto "
             >
-              Upload
+              Submit
             </button>
           </div>
         </form>

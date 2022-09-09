@@ -13,16 +13,16 @@ const quizSchema = new Schema(
       required: true,
       trim: true,
     },
-    // image: {
-    //   public_id: {
-    //     type: String,
-    //     required: true,
-    //   },
-    //   url: {
-    //     type: String,
-    //     required: true,
-    //   },
-    // },
+    image: {
+      public_id: {
+        type: String,
+        required: true,
+      },
+      url: {
+        type: String,
+        required: true,
+      },
+    },
     price: {
       type: String,
       default: "free",
@@ -39,7 +39,7 @@ const quizSchema = new Schema(
       default: 0,
       enum: ["question_based", "quiz_based"],
     },
-    showAnser: {
+    answerType: {
       type: String,
       default: "question_based",
       enum: ["question_based", "quiz_based"],

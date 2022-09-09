@@ -7,18 +7,18 @@ const quizController = {
     try {
       const { name, description, image, price } = req.body;
 
-      // const myCloud = await cloudinary.v2.uploader.upload(image, {
-      //   folder: "quiz",
-      // });
+      const myCloud = await cloudinary.v2.uploader.upload(image, {
+        folder: "quiz",
+      });
 
       const quiz = await Quiz.create({
         name,
         description,
         price,
-        // image: {
-        //   public_id: myCloud.public_id,
-        //   url: myCloud.secure_url,
-        // },
+        image: {
+          public_id: myCloud.public_id,
+          url: myCloud.secure_url,
+        },
       });
 
       return res.status(201).json(quiz);
@@ -58,7 +58,7 @@ const quizController = {
         return next(new ErrorHandler(`There are no quiz available ${id}`, 404));
       }
 
-      return res.status(200).json({ quiz });
+      return res.status(200).json(quiz);
     } catch (error) {
       return res.status(500).json({
         status: false,

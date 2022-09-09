@@ -49,7 +49,7 @@ const userSlice = createSlice({
     logoutUser: (state) => {
       state.user = null;
       state.loggedIn = false;
-      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
     },
   },
   extraReducers: {
@@ -60,7 +60,7 @@ const userSlice = createSlice({
       state.loading = false;
       state.loggedIn = true;
       state.user = payload;
-      localStorage.setItem("token", JSON.stringify({ ...payload }));
+      sessionStorage.setItem("token", JSON.stringify({ ...payload }));
     },
     [loginUser.rejected]: (state, { payload }) => {
       state.loading = false;
@@ -73,7 +73,7 @@ const userSlice = createSlice({
       state.loading = false;
       state.loggedIn = true;
       state.user = payload;
-      localStorage.setItem("token", JSON.stringify({ ...payload }));
+      sessionStorage.setItem("token", JSON.stringify({ ...payload }));
     },
     [registerUser.rejected]: (state, { payload }) => {
       state.loading = false;

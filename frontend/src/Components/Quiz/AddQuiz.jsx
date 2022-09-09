@@ -4,6 +4,7 @@ import classes from "../../styles/AddQuiz.module.css";
 export const AddQuiz = ({ id }) => {
   const [imagePreview, setImagePreview] = useState("./imagePreview.png");
   const submitQuiz = () => {};
+
   console.log(id);
   return (
     <div className="w-10/12 flex  text-slate-50 justify-center">
