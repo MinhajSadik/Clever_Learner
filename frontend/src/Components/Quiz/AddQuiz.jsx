@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { addQuiz } from "../../redux/features/quizSlice";
 import classes from "../../styles/AddQuiz.module.css";
 
 export const AddQuiz = ({ id }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [imagePreview, setImagePreview] = useState("/imagePreview.png");
   const [image, setImage] = useState("/imagePreview.png");
@@ -48,6 +50,7 @@ export const AddQuiz = ({ id }) => {
     quizData.set("answerType", answerType);
 
     dispatch(addQuiz(quizData));
+    navigate("/");
   };
 
   return (

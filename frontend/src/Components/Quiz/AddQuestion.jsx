@@ -13,14 +13,10 @@ export const AddQuestion = ({ id }) => {
   ]);
 
   const [quiz, setQuiz] = useState({
-    questions: "",
+    question: "",
     options: ans,
-    correctAnswer: "",
+    answer: "",
   });
-
-  console.log(id)
-
-  // console.log(ans);
 
   const handleQuiz = (event) => {
     event.preventDefault();
@@ -40,6 +36,9 @@ export const AddQuestion = ({ id }) => {
     );
     setQuiz({ ...quiz, options: ans });
   };
+
+  console.log(ans);
+
   return (
     <div className="w-10/12 flex text-slate-50 justify-center">
       <div className="">
@@ -49,15 +48,17 @@ export const AddQuestion = ({ id }) => {
         <form className="mt-6">
           <label
             className="block uppercase tracking-wide text-xs font-bold mb-2 text-black"
-            htmlFor="grid-first-name"
+            htmlFor="question"
           >
             Question{" "}
           </label>
           <input
             className=" block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            id="grid-first-name"
+            id="question"
             type="text"
+            name="question"
             placeholder="Question"
+            value={quiz.question}
             onChange={(event) =>
               setQuiz({ ...quiz, questions: event.target.value })
             }
@@ -124,8 +125,10 @@ export const AddQuestion = ({ id }) => {
             id="grid-first-name"
             type="text"
             placeholder="Answer"
+            name="answer"
+            value={quiz.answer}
             onChange={(event) =>
-              setQuiz({ ...quiz, correctAnswer: event.target.value })
+              setQuiz({ ...quiz, answer: event.target.value })
             }
           />
           <div className="flex">

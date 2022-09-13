@@ -44,7 +44,7 @@ const QuizDetails = () => {
 
   const handleEnroll = () => {
     navigate("/quiz/play");
-    localStorage.setItem("quiz", JSON.stringify({ ...quiz }));
+    localStorage.setItem(`quiz`, JSON.stringify({ ...quiz }));
   };
 
   useEffect(() => {
@@ -64,23 +64,18 @@ const QuizDetails = () => {
               <div className="flex justify-between align-middle">
                 <div className="flex flex-col  w-4/5 pl-24 ml-12">
                   <h1 className="text-2xl m-2 text-black-400/25">
-                    {/* {quizzes?.question} */}
                     Quiz Name : {quiz.name}
                   </h1>
                   <p className="text-2xl m-2 text-black-400/25">
-                    {/* {quizzes?.question} */}
                     Quiz Description: {quiz.description}
                   </p>
                   <p className="text-2xl m-2 text-black-400/25">
-                    {/* {quizzes?.question} */}
                     Quiz Price: {quiz.price}
                   </p>
                   <p className="text-2xl m-2 text-black-400/25">
-                    {/* {quizzes?.question} */}
                     Quiz Time: {quiz.duration}
                   </p>
                   <p className="text-2xl m-2 text-black-400/25">
-                    {/* {quizzes?.question} */}
                     Show Answer: {quiz.answerType}
                   </p>
                 </div>
@@ -103,13 +98,6 @@ const QuizDetails = () => {
                   </div>
                 )}
               </div>
-
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute right-36 top-36"
-                onClick={handleEnroll}
-              >
-                {isEnrolled ? "Enrolled" : "Enroll"}
-              </button>
             </div>
           </div>
         </div>

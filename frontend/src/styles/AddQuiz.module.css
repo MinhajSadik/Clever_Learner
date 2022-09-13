@@ -1,5 +1,5 @@
 .uploadImage > img {
-  width: auto;
+  width: 100%;
   height: 50%;
   border-radius: 100%;
 }
