@@ -10,6 +10,8 @@ const quizController = {
 
       const myCloud = await cloudinary.v2.uploader.upload(image, {
         folder: "quiz",
+        width: 150,
+        crop: "scale",
       });
 
       const quiz = await Quiz.create({
