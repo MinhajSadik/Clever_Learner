@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import UserModel from "../models/userModel.js";
 import ErrorHandler from "../utils/errorHandler.js";
 
+//using object for user controller instance
 const userController = {
   registerUser: async (req, res, next) => {
     const { name, email, password } = req.body;

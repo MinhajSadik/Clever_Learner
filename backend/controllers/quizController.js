@@ -2,8 +2,9 @@ import cloudinary from "cloudinary";
 import Quiz from "../models/quizModel.js";
 import ErrorHandler from "../utils/errorHandler.js";
 
-const quizController = {
-  addQuiz: async (req, res) => {
+//using class for quiz controller instance
+class QuizController {
+  async addQuiz(req, res) {
     try {
       const { name, description, image, price, duration, answerType } =
         req.body;
@@ -33,8 +34,9 @@ const quizController = {
         message: error.message,
       });
     }
-  },
-  allQuiz: async (req, res, next) => {
+  }
+
+  async allQuiz(req, res, next) {
     try {
       const quizzes = await Quiz.find({})
         .populate({
@@ -51,8 +53,9 @@ const quizController = {
         message: error.message,
       });
     }
-  },
-  quizById: async (req, res, next) => {
+  }
+
+  async quizById(req, res, next) {
     const { id } = req.params;
     try {
       const quiz = await Quiz.findById(id).populate({
@@ -70,7 +73,7 @@ const quizController = {
         message: error.message,
       });
     }
-  },
-};
+  }
+}
 
-export default quizController;
+export default new QuizController();

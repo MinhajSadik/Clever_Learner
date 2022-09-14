@@ -8,7 +8,7 @@
   cursor: pointer;
   padding-bottom: 1rem;
   margin: 5px;
-  /* display: flex; */
+  display: flex;
 }
 
 .quiz:hover {
