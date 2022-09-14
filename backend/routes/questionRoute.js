@@ -10,6 +10,7 @@ router.post(
   authorizeRoles("admin"),
   questionController.addQuestion
 );
+
 router.get("/all", checkAuth, questionController.allQuestion);
 router.get("/:id", checkAuth, questionController.questionById);
 
