@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import { AddQuiz } from "./Components/Quiz/AddQuiz";
 import PlayQuiz from "./Components/Quiz/PlayQuiz";
 import QuizDetails from "./Components/Quiz/QuizDetails";
 import Navbar from "./Components/Shared/Navbar";
@@ -29,6 +30,7 @@ const App = () => {
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/" element={<Quizzes />} />
         <Route path="/quiz/play" element={<PlayQuiz />} />
+        <Route path="/add/quiz" element={<AddQuiz />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/quiz/:id" element={<QuizDetails />} />

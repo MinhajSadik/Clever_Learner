@@ -1,6 +1,6 @@
 .quiz {
-  max-width: 20%;
-  height: 10%;
+  width: 20%;
+  height: 5%;
   background-color: #fff;
   border: 1px solid #e5e5e5;
   padding: 10px;
@@ -8,6 +8,7 @@
   cursor: pointer;
   padding-bottom: 1rem;
   margin: 5px;
+  /* display: flex; */
 }
 
 .quiz:hover {
@@ -26,8 +27,6 @@
 
 .quiz img {
   width: 100%;
-  object-fit: cover;
-  height: 20%;
 }
 
 .quiz .meta {

@@ -74,7 +74,7 @@ const quizSlice = createSlice({
     },
     [addQuiz.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.quizzes = payload;
+      state.quizzes = [...state.quizzes, payload];
     },
     [addQuiz.rejected]: (state, { payload }) => {
       state.loading = false;
