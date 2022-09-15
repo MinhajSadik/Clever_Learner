@@ -9,7 +9,7 @@ const { REACT_APP_DEV_API, REACT_APP_PROD_API } = process.env;
 // });
 
 const API = axios.create({
-  baseURL: process.env.REACT_APP_PROD_API,
+  baseURL: process.env.REACT_APP_DEV_API,
 });
 
 console.log(REACT_APP_DEV_API, REACT_APP_PROD_API, devEnv);
@@ -20,7 +20,6 @@ API.interceptors.request.use((req) => {
       JSON.parse(sessionStorage.getItem("token")).token
     }`;
   }
-  // console.log("API token", localStorage.getItem("token"));
   return req;
 });
 

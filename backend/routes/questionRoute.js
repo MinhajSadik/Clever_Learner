@@ -11,7 +11,7 @@ router.post(
   questionController.addQuestion
 );
 
-router.get("/all", checkAuth, questionController.allQuestion);
-router.get("/:id", checkAuth, questionController.questionById);
+router.get("/all", questionController.allQuestion);
+router.get("/:id", questionController.questionById);
 
 export default router;

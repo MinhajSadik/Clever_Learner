@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Timer from "../../utils/timer";
+import Timer from "../../utils/Timer";
 import Loading from "../Shared/Loading";
 
 const PlayQuiz = () => {
@@ -11,8 +11,6 @@ const PlayQuiz = () => {
   }));
 
   const quizzes = JSON.parse(localStorage.getItem(`${quiz.name}`));
-
-  
 
   const admin = user?.user?.role === "admin";
 
