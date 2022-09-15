@@ -1,6 +1,7 @@
 import { default as React, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import AddQuiz from "../Components/Quiz/AddQuiz";
 import Quiz from "../Components/Quiz/Quiz";
 import Loading from "../Components/Shared/Loading";
 import { allQuiz } from "../redux/features/quizSlice";
@@ -26,11 +27,14 @@ const Quizzes = () => {
       ) : (
         <div className="">
           <div className="justify-self-center">
-            <h1 className="font-bold text-2xl text-center m-5">
+            <h1 className="font-bold text-2xl text-center m-2">
               Prepare By Topics
             </h1>
           </div>
-          <div className="flex m-5 p-5">
+          <div className="flex justify-center">
+            <AddQuiz quizzes={quizzes} />
+          </div>
+          <div className="grid grid-cols-5 gap-1">
             {quizzes.map((quiz) => (
               <Quiz key={quiz._id} quiz={quiz} />
             ))}

@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getQuizById } from "../../redux/features/quizSlice";
 import Loading from "../Shared/Loading";
 import { AddQuestion } from "./AddQuestion";
-import { AddQuiz } from "./AddQuiz";
 
 const QuizDetails = () => {
   const { user, quiz, loading } = useSelector((state) => ({
@@ -57,7 +56,7 @@ const QuizDetails = () => {
         <Loading />
       ) : (
         <div>
-          {quizOpen && <AddQuiz id={id} />}
+          {/* {quizOpen && <AddQuiz id={id} />} */}
           {questionOpen && <AddQuestion id={id} />}
           <div className=" w-11/12 h-96 pt-5 mt-5 bg-white">
             <div className="w-full shadow m-10 p-4 ml-12">
