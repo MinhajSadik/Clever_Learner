@@ -5,7 +5,8 @@ import Modal from "react-bootstrap/Modal";
 import { useDispatch } from "react-redux";
 import { addQuestion } from "../../redux/features/questionSlice";
 
-export const AddQuestion = ({ id }) => {
+export const AddQuestion = ({ quizId }) => {
+  console.log(quizId);
   const dispatch = useDispatch();
   const [options, setOptions] = useState([
     { option: "", isCorrect: false, id: 1 },
@@ -18,6 +19,7 @@ export const AddQuestion = ({ id }) => {
     question: "",
     options: options,
     answer: "",
+    quizId: quizId,
   });
 
   const { question, answer } = questionInfo;
@@ -41,7 +43,7 @@ export const AddQuestion = ({ id }) => {
 
   const submitQuestion = (e) => {
     // e.preventDefault();
-    dispatch(addQuestion({ questionInfo, id }));
+    dispatch(addQuestion({ questionInfo, quizId }));
   };
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -67,7 +69,6 @@ export const AddQuestion = ({ id }) => {
                 placeholder="What is your question?"
                 name="question"
                 value={question}
-                d
                 onChange={onInputChange}
                 autoFocus
               />

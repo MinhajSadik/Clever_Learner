@@ -8,7 +8,9 @@ const questionController = {
       const { question, options, answer, quizId } = req.body;
       const quiz = await Quiz.findById(quizId);
 
-      console.log(quiz);
+      if (!quiz) return;
+
+      console.log("quiz in question:", quiz);
 
       const newQuestion = await Question.create({
         question,

@@ -15,9 +15,9 @@ export const allQuestion = createAsyncThunk(
 
 export const addQuestion = createAsyncThunk(
   "question/add",
-  async ({ id, questionInfo }, { rejectedWithValue }) => {
+  async (questionInfo, { rejectedWithValue }) => {
     try {
-      const { data } = await api.addQuestion(questionInfo, id);
+      const { data } = await api.addQuestion(questionInfo);
       return data;
     } catch (error) {
       return rejectedWithValue(error.data.message);

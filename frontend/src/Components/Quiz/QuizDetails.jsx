@@ -28,7 +28,7 @@ const QuizDetails = () => {
         <div>
           <div className=" w-11/12 h-96 pt-5 mt-5 bg-white">
             <div className="flex justify-center">
-              {admin && <AddQuestion id={id} />}
+              {admin && <AddQuestion quizId={id} />}
             </div>
             <div className="w-full shadow m-10 p-4 ml-12 flex items-center">
               <div className="">
