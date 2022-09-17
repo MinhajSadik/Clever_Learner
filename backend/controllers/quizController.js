@@ -40,7 +40,7 @@ class QuizController {
     try {
       const quizzes = await Quiz.find({})
         .populate({
-          path: "quizzes",
+          path: "questions",
         })
         .sort({ createdAt: -1 });
       if (!quizzes) {
@@ -59,7 +59,7 @@ class QuizController {
     const { id } = req.params;
     try {
       const quiz = await Quiz.findById(id).populate({
-        path: "quizzes",
+        path: "questions",
       });
 
       if (!quiz) {

@@ -3,8 +3,10 @@ import classes from "../../styles/Quiz.module.css";
 
 const Quiz = ({ quiz }) => {
   return (
-    <div className={classes.quiz}>
-      <Link to={`/quiz/${quiz._id}`}>
+    <Link
+      to={`${quiz.price === "free" ? `/quiz/${quiz._id}` : `/quiz/payment`}`}
+    >
+      <div className={classes.quiz}>
         <img src={quiz.image?.url} alt={quiz.name} />
         <div className={classes.first}>
           <p className="">#️⃣ {quiz.name}</p>
@@ -15,11 +17,11 @@ const Quiz = ({ quiz }) => {
             {quiz.quizzes.length} Questions
           </p>
           <p className="text-uppercase uppercase shadow-sm m-1 text-center w-20 h-8 bg-blue-400 rounded-full p-1">
-            {quiz.price}
+            ${quiz.price}
           </p>
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 

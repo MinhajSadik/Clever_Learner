@@ -7,6 +7,9 @@ import Loading from "../Components/Shared/Loading";
 import { allQuiz } from "../redux/features/quizSlice";
 
 const Quizzes = () => {
+  const { user } = useSelector((state) => state.user);
+  const admin = user?.user?.role === "admin";
+
   const dispatch = useDispatch();
   const { quizzes, loading, error } = useSelector((state) => ({
     ...state.quiz,
@@ -31,9 +34,11 @@ const Quizzes = () => {
               Prepare By Topics
             </h1>
           </div>
-          <div className="flex justify-center">
-            <AddQuiz quizzes={quizzes} />
-          </div>
+          {admin && (
+            <div className="flex justify-center">
+              <AddQuiz quizzes={quizzes} />
+            </div>
+          )}
           <div className="grid grid-cols-5 gap-1">
             {quizzes.map((quiz) => (
               <Quiz key={quiz._id} quiz={quiz} />

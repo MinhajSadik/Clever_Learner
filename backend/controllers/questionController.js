@@ -16,7 +16,7 @@ const questionController = {
       });
 
       const savedQuestion = await newQuestion.save();
-      await quiz.quizzes.push(savedQuestion._id);
+      quiz.questions.push(savedQuestion._id);
       await quiz.save();
 
       return res.status(201).json(savedQuestion);

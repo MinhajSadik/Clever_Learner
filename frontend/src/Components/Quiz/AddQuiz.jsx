@@ -6,11 +6,11 @@ import { addQuiz } from "../../redux/features/quizSlice";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import { toast } from "react-toastify";
 
 const AddQuiz = ({ id }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [imagePreview, setImagePreview] = useState("/imagePreview.png");
   const [image, setImage] = useState("/imagePreview.png");
   const initialState = {
     name: "",
@@ -24,11 +24,8 @@ const AddQuiz = ({ id }) => {
   const [quizInfo, setQuizInfo] = useState(initialState);
   const { name, description, price, duration, answerType } = quizInfo;
 
-  console.log(quizInfo);
-
   const onInputChange = (e) => {
     const { name, value } = e.target;
-
     setQuizInfo({ ...quizInfo, [name]: value });
   };
 
@@ -36,7 +33,6 @@ const AddQuiz = ({ id }) => {
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
-        setImagePreview(reader.result);
         setImage(reader.result);
       }
     };
@@ -53,16 +49,21 @@ const AddQuiz = ({ id }) => {
     quizData.set("duration", duration);
     quizData.set("answerType", answerType);
 
-    dispatch(addQuiz(quizData));
-    navigate("/");
+    if (name && description && image) {
+      dispatch(addQuiz(quizData));
+      navigate("/");
+    } else {
+      toast.error("please fill important field");
+    }
   };
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   return (
     <div className="">
-      <Button className=" bg-purple-600 rounded-sm" onClick={handleShow}>
+      <Button className=" bg-blue-700 rounded-sm" onClick={handleShow}>
         Add Quiz
       </Button>
 
@@ -70,7 +71,7 @@ const AddQuiz = ({ id }) => {
         <Modal.Header>
           <Modal.Title>
             {" "}
-            Upload a interesting quiz for your visitors
+            Upload an interesting quiz for your visitors
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -85,13 +86,14 @@ const AddQuiz = ({ id }) => {
                 value={name}
                 name="name"
                 onChange={onInputChange}
+                required
               />
             </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Label>A Short Description</Form.Label>
               <Form.Control
-                type="description"
+                type="text"
                 name="description"
                 autoFocus
                 placeholder="What would be quiz's best description, describe a short description and key point"
@@ -100,6 +102,7 @@ const AddQuiz = ({ id }) => {
                 id="description"
                 as="textarea"
                 rows={2}
+                required
               />
             </Form.Group>
 
@@ -113,6 +116,7 @@ const AddQuiz = ({ id }) => {
                 name="price"
                 onChange={onInputChange}
                 autoFocus
+                required
               />
             </Form.Group>
 
@@ -125,6 +129,7 @@ const AddQuiz = ({ id }) => {
                 name="duration"
                 value={duration}
                 onChange={onInputChange}
+                required
               >
                 <option value="">Choose Quis Duration</option>
                 <option value="quiz_based">Quiz Based</option>
@@ -143,6 +148,7 @@ const AddQuiz = ({ id }) => {
                 name="answerType"
                 value={answerType}
                 onChange={onInputChange}
+                required
               >
                 <option value="">Choose Quis Answer Option</option>
                 <option value="quiz_based">Quiz Based</option>
@@ -164,7 +170,7 @@ const AddQuiz = ({ id }) => {
             </Form.Group>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="text bg-gray-600">
           <Button onClick={handleClose}>Close</Button>
           <Button onClick={submitQuiz}>Submit Quiz</Button>
         </Modal.Footer>

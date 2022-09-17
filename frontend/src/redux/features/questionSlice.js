@@ -13,6 +13,18 @@ export const allQuestion = createAsyncThunk(
   }
 );
 
+export const addQuestion = createAsyncThunk(
+  "question/add",
+  async ({ id, questionInfo }, { rejectedWithValue }) => {
+    try {
+      const { data } = await api.addQuestion(questionInfo, id);
+      return data;
+    } catch (error) {
+      return rejectedWithValue(error.data.message);
+    }
+  }
+);
+
 const questionSlice = createSlice({
   name: "question",
   initialState: {
@@ -32,6 +44,16 @@ const questionSlice = createSlice({
       state.questions = payload;
     },
     [allQuestion.rejected]: (state, { payload }) => {
+      state.error = payload;
+    },
+    [addQuestion.pending]: (state) => {
+      state.loading = true;
+    },
+    [addQuestion.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.questions = [...state.questions, payload];
+    },
+    [addQuestion.rejected]: (state, { payload }) => {
       state.error = payload;
     },
   },

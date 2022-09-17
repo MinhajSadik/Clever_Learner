@@ -27,12 +27,13 @@ const quizSchema = new Schema(
       type: String,
       default: "free",
     },
-    quizzes: [
+    questions: [
       {
         type: Schema.Types.ObjectId,
         ref: "Question",
       },
     ],
+
     duration: {
       type: String,
       default: "question_based",
