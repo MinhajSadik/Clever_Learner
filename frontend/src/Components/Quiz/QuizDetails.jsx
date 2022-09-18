@@ -11,6 +11,8 @@ const QuizDetails = () => {
     ...state.quiz,
   }));
 
+  console.log(quiz.questions);
+
   const admin = user?.user?.role === "admin";
 
   const { id } = useParams();
@@ -68,7 +70,7 @@ const QuizDetails = () => {
                 <p className="">
                   Questions :
                   <span className="uppercase shadow-sm m-3 text-center w-32 h-8 bg-yellow-400 rounded-md p-1">
-                    {quiz.quizzes?.length}
+                    {quiz.questions?.length}
                   </span>
                 </p>
               </div>

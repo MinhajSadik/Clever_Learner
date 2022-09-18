@@ -14,7 +14,7 @@ const Quiz = ({ quiz }) => {
         </div>
         <div className={classes.second}>
           <p className=" shadow-sm bg-green-300 rounded-md p-1">
-            {quiz.quizzes.length} Questions
+            {quiz.questions.length} Questions
           </p>
           <p className="text-uppercase uppercase shadow-sm m-1 text-center w-20 h-8 bg-blue-400 rounded-full p-1">
             ${quiz.price}
