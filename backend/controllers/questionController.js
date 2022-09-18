@@ -8,9 +8,8 @@ const questionController = {
       const { question, options, quizId, answer } = req.body;
       const quiz = await Quiz.findById(quizId);
 
-      if (!quiz) {
-        return next(new ErrorHandler(`There are no quiz by ${quizId}`, 404));
-      }
+      if (!quiz) return;
+      console.log("quiz state from add question:", quiz);
 
       const newQuestion = await Question.create({
         question,

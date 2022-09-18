@@ -44,7 +44,7 @@ export const AddQuestion = ({ quizId }) => {
 
   const submitQuestion = () => {
     console.log(questionInfo);
-    dispatch(addQuestion({ questionInfo, quizId }));
+    dispatch(addQuestion({ questionInfo }));
   };
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
