@@ -1,26 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getQuizById } from "../../redux/features/quizSlice";
 import Loading from "../Shared/Loading";
 import { AddQuestion } from "./AddQuestion";
+import PlayQuiz from "./PlayQuiz";
 
 const QuizDetails = () => {
   const { user, quiz, loading } = useSelector((state) => ({
     ...state.user,
     ...state.quiz,
   }));
-
-  console.log(quiz.questions);
-
   const admin = user?.user?.role === "admin";
-
   const { id } = useParams();
   const dispatch = useDispatch();
+
+  const [paid, setPaid] = useState(false);
 
   useEffect(() => {
     dispatch(getQuizById(id));
   }, [dispatch, id]);
+
+  const startQuiz = () => {
+    setPaid(true);
+  };
 
   return (
     <>
@@ -30,7 +33,8 @@ const QuizDetails = () => {
         <div>
           <div className=" w-11/12 h-96 pt-5 mt-5 bg-white">
             <div className="flex justify-center">
-              {admin && <AddQuestion quizId={id} />}
+              {admin && <AddQuestion id={id} quizId={quiz._id} />}
+              {paid && <PlayQuiz quiz={quiz} />}
             </div>
             <div className="w-full shadow m-10 p-4 ml-12 flex items-center">
               <div className="">
@@ -63,11 +67,11 @@ const QuizDetails = () => {
                 </p>
                 <p className="m-2 text-black-400/25">
                   Show Answer :
-                  <span className="uppercase shadow-sm m-1 text-center w-20 h-8 bg-blue-400 rounded-md p-1">
+                  <span className="uppercase shadow-sm text-center w-20 h-8 bg-blue-400 rounded-md p-1">
                     {quiz.answerType}
                   </span>
                 </p>
-                <p className="">
+                <p className="m-2 text-black-400/25">
                   Questions :
                   <span className="uppercase shadow-sm m-3 text-center w-32 h-8 bg-yellow-400 rounded-md p-1">
                     {quiz.questions?.length}
@@ -75,7 +79,9 @@ const QuizDetails = () => {
                 </p>
               </div>
               <div className="flex justify-center items-center rounded-full  text-white bg-black w-20 h-10">
-                <button onClick={() => {}}>start</button>
+                <button type="button" onClick={startQuiz}>
+                  start
+                </button>
               </div>
             </div>
           </div>

@@ -5,8 +5,10 @@ import Modal from "react-bootstrap/Modal";
 import { useDispatch } from "react-redux";
 import { addQuestion } from "../../redux/features/questionSlice";
 
-export const AddQuestion = ({ quizId }) => {
+export const AddQuestion = ({ id, quizId }) => {
   const dispatch = useDispatch();
+  const [show, setShow] = useState(false);
+
   const [options, setOptions] = useState([
     { option: "", isCorrect: false, id: 1 },
     { option: "", isCorrect: false, id: 2 },
@@ -18,7 +20,7 @@ export const AddQuestion = ({ quizId }) => {
     question: "",
     options: options,
     answer: "",
-    quizId: quizId,
+    quizId,
   });
 
   const { question, answer } = questionInfo;
@@ -40,13 +42,10 @@ export const AddQuestion = ({ quizId }) => {
     setQuestionInfo({ ...questionInfo, [name]: value });
   };
 
-  console.log(quizId, questionInfo);
-
-  const submitQuestion = () => {
-    console.log(questionInfo);
-    dispatch(addQuestion({ questionInfo }));
+  const submitQuestion = (e) => {
+    dispatch(addQuestion(questionInfo));
+    handleClose(true);
   };
-  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -63,7 +62,7 @@ export const AddQuestion = ({ quizId }) => {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3">
-              <Form.Label>A Clear Question!</Form.Label>
+              <Form.Label for="text">A Clear Question!</Form.Label>
               <Form.Control
                 id="question"
                 type="text"
@@ -76,7 +75,7 @@ export const AddQuestion = ({ quizId }) => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Options</Form.Label>
+              <Form.Label for="text">Options</Form.Label>
               {options?.map((option) => {
                 return (
                   <div key={option.id} className="flex  gap-1 ">
@@ -109,13 +108,14 @@ export const AddQuestion = ({ quizId }) => {
                       name="isCorrect"
                       id=""
                       v-model="allowMultiple"
-                      value={option.boolean}
+                      value={option.isCorrect}
                       onChange={(e) => {
                         handleType(option.id)(e);
                       }}
                     >
                       <option value="">Select the value</option>
                       <option value={true}>true</option>
+                      <option value={false}>false</option>
                     </select>
                   </div>
                 );
@@ -123,7 +123,7 @@ export const AddQuestion = ({ quizId }) => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Write your Answer!</Form.Label>
+              <Form.Label for="text">Write your Answer!</Form.Label>
               <Form.Control
                 id="answer"
                 type="text"

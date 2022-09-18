@@ -1,28 +1,17 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Timer from "../../utils/Timer";
 import Loading from "../Shared/Loading";
 
-const PlayQuiz = () => {
-  const { user, loading, quiz } = useSelector((state) => ({
+const PlayQuiz = ({ quiz }) => {
+  const { user, loading, quizzes } = useSelector((state) => ({
     ...state.user,
     ...state.quiz,
   }));
-
-  const quizzes = JSON.parse(localStorage.getItem(`${quiz.name}`));
+  const [num, setNum] = useState(0);
 
   const admin = user?.user?.role === "admin";
-
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [quizOpen, setQuizOpen] = useState(false);
-  const [questionOpen, setQuestionOpen] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [num, setNum] = useState(0);
-  const [nextClicked, setNextClicked] = useState(false);
-  const [timeout, setTimeout] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [submitQuiz, setSubmitQuiz] = useState(false);
   const [enrolled, setEnrolled] = useState(false);
@@ -37,9 +26,9 @@ const PlayQuiz = () => {
             <div className="w-full shadow m-10 p-4 ml-12">
               <div className="flex justify-between align-middle">
                 <div className="flex w-4/5 pl-24 ml-12">
-                  <h1 className="text-2xl m-2 text-black-400/25">{num + 1}</h1>
+                  <h1 className="text-2xl m-2 text-black-400/25">{num + 1}.</h1>
                   <h1 className="text-2xl m-2 text-black-400/25">
-                    {quizzes?.question}
+                    {quiz.questions[num].question}
                     {/* what's your name */}
                   </h1>
                 </div>
@@ -61,7 +50,7 @@ const PlayQuiz = () => {
                 </div>
               </div>
               <ol className=" w-3/5 ml-64">
-                {quizzes?.quizzes?.options?.map((option, index) => (
+                {quiz.questions[num].options?.map((option, index) => (
                   <li
                     key={index}
                     className="

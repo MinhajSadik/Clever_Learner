@@ -52,6 +52,7 @@ const AddQuiz = ({ id }) => {
     if (name && description && image) {
       dispatch(addQuiz(quizData));
       navigate("/");
+      handleClose(true);
     } else {
       toast.error("please fill important field");
     }
@@ -77,7 +78,7 @@ const AddQuiz = ({ id }) => {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3">
-              <Form.Label>A Short Name!</Form.Label>
+              <Form.Label for="text">A Short Name!</Form.Label>
               <Form.Control
                 autoFocus
                 id="name"
@@ -91,7 +92,7 @@ const AddQuiz = ({ id }) => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>A Short Description</Form.Label>
+              <Form.Label for="text">A Short Description</Form.Label>
               <Form.Control
                 type="text"
                 name="description"
@@ -107,7 +108,7 @@ const AddQuiz = ({ id }) => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>How much Cost?</Form.Label>
+              <Form.Label for="text">How much Cost?</Form.Label>
               <Form.Control
                 id="price"
                 type="text"
@@ -121,7 +122,9 @@ const AddQuiz = ({ id }) => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>What would be the Quiz time duration?</Form.Label>
+              <Form.Label for="text">
+                What would be the Quiz time duration?
+              </Form.Label>
               <Form.Control
                 as="select"
                 id="duration"
@@ -138,7 +141,7 @@ const AddQuiz = ({ id }) => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>
+              <Form.Label for="text">
                 What would be the quiz answer showing option?
               </Form.Label>
               <Form.Control
@@ -157,7 +160,7 @@ const AddQuiz = ({ id }) => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>
+              <Form.Label for="text">
                 What would be the quiz answer showing option?
               </Form.Label>
               <Form.Control
