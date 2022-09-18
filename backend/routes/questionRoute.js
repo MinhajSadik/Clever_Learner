@@ -1,13 +1,13 @@
 import { Router } from "express";
 import questionController from "../controllers/questionController.js";
-// import { authorizeRoles, checkAuth } from "../middlewares/checkAuth.js";
+import { authorizeRoles, checkAuth } from "../middlewares/checkAuth.js";
 
 const router = Router();
 
 router.post(
   "/add",
-  // checkAuth,
-  // authorizeRoles("admin"),
+  checkAuth,
+  authorizeRoles("admin"),
   questionController.addQuestion
 );
 
