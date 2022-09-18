@@ -10,8 +10,6 @@ const questionController = {
 
       if (!quiz) return;
 
-      console.log("quiz in question:", quiz);
-
       const newQuestion = await Question.create({
         question,
         options,

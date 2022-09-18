@@ -39,10 +39,10 @@ class QuizController {
   async allQuiz(req, res, next) {
     try {
       const quizzes = await Quiz.find({})
-        .populate("questions")
+        .populate("quizId")
         .sort({ createdAt: -1 });
 
-      if (!quizzes) {
+      if (quizzes.length === 0) {
         next(new ErrorHandler("There are no quizzes available", 404));
       }
       return res.status(200).json(quizzes);
@@ -61,7 +61,7 @@ class QuizController {
         .populate("questions")
         .sort({ createdAt: -1 });
 
-      if (!quiz) {
+      if (quiz.length === 0) {
         return next(new ErrorHandler(`There are no quiz available ${id}`, 404));
       }
 
