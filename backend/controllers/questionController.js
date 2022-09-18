@@ -3,7 +3,7 @@ import Quiz from "../models/quizModel.js";
 import ErrorHandler from "../utils/errorHandler.js";
 
 const questionController = {
-  addQuestion: async (req, res) => {
+  addQuestion: async (req, res, next) => {
     try {
       const { question, options, quizId, answer } = req.body;
       const quiz = await Quiz.findById(quizId);

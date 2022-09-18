@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { addQuestion } from "../../redux/features/questionSlice";
 
 export const AddQuestion = ({ quizId }) => {
-  console.log(quizId);
   const dispatch = useDispatch();
   const [options, setOptions] = useState([
     { option: "", isCorrect: false, id: 1 },
@@ -41,7 +40,10 @@ export const AddQuestion = ({ quizId }) => {
     setQuestionInfo({ ...questionInfo, [name]: value });
   };
 
+  console.log(quizId, questionInfo);
+
   const submitQuestion = () => {
+    console.log(questionInfo);
     dispatch(addQuestion({ questionInfo, quizId }));
   };
   const [show, setShow] = useState(false);
