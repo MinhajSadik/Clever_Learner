@@ -5,10 +5,12 @@ import ErrorHandler from "../utils/errorHandler.js";
 const questionController = {
   addQuestion: async (req, res) => {
     try {
-      const { question, options, answer, quizId } = req.body;
+      const { question, options, quizId, answer } = req.body;
       const quiz = await Quiz.findById(quizId);
 
-      if (!quiz) return;
+      if (!quiz) {
+        return next(new ErrorHandler(`There are no quiz by ${quizId}`, 404));
+      }
 
       const newQuestion = await Question.create({
         question,
@@ -31,7 +33,9 @@ const questionController = {
   },
   allQuestion: async (req, res, next) => {
     try {
-      const questions = await Question.find({}).sort({ createdAt: -1 });
+      const questions = await Question.find({})
+        .populate("quizId")
+        .sort({ createdAt: -1 });
 
       if (!questions) {
         next(new ErrorHandler("There are no questions available", 404));

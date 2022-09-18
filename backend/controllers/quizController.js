@@ -39,7 +39,7 @@ class QuizController {
   async allQuiz(req, res, next) {
     try {
       const quizzes = await Quiz.find({})
-        .populate("quizId")
+        .populate("questions.quizId", "-__v")
         .sort({ createdAt: -1 });
 
       if (quizzes.length === 0) {
