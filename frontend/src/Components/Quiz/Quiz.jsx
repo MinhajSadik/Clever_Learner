@@ -4,7 +4,8 @@ import classes from "../../styles/Quiz.module.css";
 const Quiz = ({ quiz }) => {
   return (
     <Link
-      to={`${quiz.price === "free" ? `/quiz/${quiz._id}` : `/quiz/payment`}`}
+      // to={`${quiz.price === "free" ? `/quiz/${quiz._id}` : `/quiz/payment`}`}
+      to={`/quiz/${quiz._id}`}
     >
       <div className={classes.quiz}>
         <img src={quiz.image?.url} alt={quiz.name} />

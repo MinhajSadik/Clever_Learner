@@ -8,7 +8,7 @@ export const allQuiz = createAsyncThunk(
       const { data } = await api.allQuiz();
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -20,7 +20,7 @@ export const getQuizById = createAsyncThunk(
       const { data } = await api.quizById(id);
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -32,7 +32,7 @@ export const addQuiz = createAsyncThunk(
       const { data } = await api.addQuiz(quizData);
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

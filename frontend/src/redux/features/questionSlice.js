@@ -3,24 +3,24 @@ import * as api from "../api";
 
 export const allQuestion = createAsyncThunk(
   "question/all",
-  async (_, { rejectedWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
       const { data } = await api.allQuestion();
       return data;
     } catch (error) {
-      return rejectedWithValue(error.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
 
 export const addQuestion = createAsyncThunk(
   "question/add",
-  async (questionInfo, { rejectedWithValue }) => {
+  async (questionInfo, { rejectWithValue }) => {
     try {
       const { data } = await api.addQuestion(questionInfo);
       return data;
     } catch (error) {
-      return rejectedWithValue(error.data.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { getQuizById } from "../../redux/features/quizSlice";
 import Loading from "../Shared/Loading";
 import { AddQuestion } from "./AddQuestion";
-import PlayQuiz from "./PlayQuiz";
 
 const QuizDetails = () => {
+  const navigate = useNavigate();
   const { user, quiz, loading } = useSelector((state) => ({
     ...state.user,
     ...state.quiz,
@@ -15,14 +16,17 @@ const QuizDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const [paid, setPaid] = useState(false);
-
   useEffect(() => {
     dispatch(getQuizById(id));
   }, [dispatch, id]);
 
   const startQuiz = () => {
-    setPaid(true);
+    if (quiz.questions.length) {
+      navigate("/play/quiz");
+      localStorage.setItem("quiz", JSON.stringify({ ...quiz }));
+    } else {
+      toast.error(`${quiz.name} has no questions`);
+    }
   };
 
   return (
@@ -33,8 +37,7 @@ const QuizDetails = () => {
         <div>
           <div className=" w-11/12 h-96 pt-5 mt-5 bg-white">
             <div className="flex justify-center">
-              {admin && <AddQuestion id={id} quizId={quiz._id} />}
-              {paid && <PlayQuiz quiz={quiz} />}
+              {admin && <AddQuestion quizId={quiz._id} />}
             </div>
             <div className="w-full shadow m-10 p-4 ml-12 flex items-center">
               <div className="">

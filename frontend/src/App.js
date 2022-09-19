@@ -22,14 +22,18 @@ const App = () => {
       dispatch(setUser(user));
     }
   }, [user, dispatch]);
+
+  // const TWO_MIN_IN_MS = 60 * 1000 + 60 * 1000;
+  // const NOW_IN_MS = new Date().getTime();
+
+  // const dateTimeAfterTwoMin = NOW_IN_MS + TWO_MIN_IN_MS;
   return (
     <BrowserRouter>
       <Navbar />
       <ToastContainer />
       <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
         <Route path="/" element={<Quizzes />} />
-        <Route path="/quiz/play" element={<PlayQuiz />} />
+        <Route path="/play/quiz" element={<PlayQuiz />} />
         <Route path="/quiz/payment" element={<PaidQuiz />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

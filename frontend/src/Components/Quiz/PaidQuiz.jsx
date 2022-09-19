@@ -1,7 +1,11 @@
 import React from "react";
 
 const PaidQuiz = () => {
-  return <div>PaidQuiz</div>;
+  return (
+    <form>
+      <h1>payment processing...</h1>
+    </form>
+  );
 };
 
 export default PaidQuiz;

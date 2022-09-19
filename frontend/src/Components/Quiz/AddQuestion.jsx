@@ -5,7 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import { useDispatch } from "react-redux";
 import { addQuestion } from "../../redux/features/questionSlice";
 
-export const AddQuestion = ({ id, quizId }) => {
+export const AddQuestion = ({ quizId }) => {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
 
@@ -62,7 +62,7 @@ export const AddQuestion = ({ id, quizId }) => {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3">
-              <Form.Label for="text">A Clear Question!</Form.Label>
+              <Form.Label htmlFor="text">A Clear Question!</Form.Label>
               <Form.Control
                 id="question"
                 type="text"
@@ -75,7 +75,7 @@ export const AddQuestion = ({ id, quizId }) => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label for="text">Options</Form.Label>
+              <Form.Label htmlFor="text">Options</Form.Label>
               {options?.map((option) => {
                 return (
                   <div key={option.id} className="flex  gap-1 ">
@@ -108,12 +108,12 @@ export const AddQuestion = ({ id, quizId }) => {
                       name="isCorrect"
                       id=""
                       v-model="allowMultiple"
-                      value={option.isCorrect}
+                      value={option.boolean}
                       onChange={(e) => {
                         handleType(option.id)(e);
                       }}
                     >
-                      <option value="">Select the value</option>
+                      {/* <option value="">Select the value</option> */}
                       <option value={true}>true</option>
                       <option value={false}>false</option>
                     </select>
@@ -123,7 +123,7 @@ export const AddQuestion = ({ id, quizId }) => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label for="text">Write your Answer!</Form.Label>
+              <Form.Label htmlFor="text">Write your Answer!</Form.Label>
               <Form.Control
                 id="answer"
                 type="text"

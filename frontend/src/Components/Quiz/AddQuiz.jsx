@@ -78,7 +78,7 @@ const AddQuiz = ({ id }) => {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3">
-              <Form.Label for="text">A Short Name!</Form.Label>
+              <Form.Label htmlFor="text">A Short Name!</Form.Label>
               <Form.Control
                 autoFocus
                 id="name"
@@ -92,7 +92,7 @@ const AddQuiz = ({ id }) => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label for="text">A Short Description</Form.Label>
+              <Form.Label htmlFor="text">A Short Description</Form.Label>
               <Form.Control
                 type="text"
                 name="description"
@@ -108,7 +108,7 @@ const AddQuiz = ({ id }) => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label for="text">How much Cost?</Form.Label>
+              <Form.Label htmlFor="text">How much Cost?</Form.Label>
               <Form.Control
                 id="price"
                 type="text"
@@ -122,7 +122,7 @@ const AddQuiz = ({ id }) => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label for="text">
+              <Form.Label htmlFor="text">
                 What would be the Quiz time duration?
               </Form.Label>
               <Form.Control
@@ -134,14 +134,14 @@ const AddQuiz = ({ id }) => {
                 onChange={onInputChange}
                 required
               >
-                <option value="">Choose Quis Duration</option>
+                <option value="">Choose Quiz Duration</option>
                 <option value="quiz_based">Quiz Based</option>
                 <option value="question_based">Question Based</option>
               </Form.Control>
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label for="text">
+              <Form.Label htmlFor="text">
                 What would be the quiz answer showing option?
               </Form.Label>
               <Form.Control
@@ -153,14 +153,14 @@ const AddQuiz = ({ id }) => {
                 onChange={onInputChange}
                 required
               >
-                <option value="">Choose Quis Answer Option</option>
+                <option value="">Choose Quiz Answer Option</option>
                 <option value="quiz_based">Quiz Based</option>
                 <option value="question_based">Question Based</option>
               </Form.Control>
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label for="text">
+              <Form.Label htmlFor="text">
                 What would be the quiz answer showing option?
               </Form.Label>
               <Form.Control
