@@ -7,12 +7,14 @@ import "./App.css";
 import PaidQuiz from "./Components/Quiz/PaidQuiz";
 import PlayQuiz from "./Components/Quiz/PlayQuiz";
 import QuizDetails from "./Components/Quiz/QuizDetails";
+import QuizResult from "./Components/Quiz/QuizResult";
 import Navbar from "./Components/Shared/Navbar";
 import Login from "./Components/User/Login";
 import Register from "./Components/User/Register";
 import NotFound from "./pages/NotFound";
 import Quizzes from "./pages/Quizzes";
 import { setUser } from "./redux/features/userSlice";
+import PrivateRoutes from "./routes/PrivateRoutes";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -25,19 +27,34 @@ const App = () => {
 
   // const TWO_MIN_IN_MS = 60 * 1000 + 60 * 1000;
   // const NOW_IN_MS = new Date().getTime();
-
   // const dateTimeAfterTwoMin = NOW_IN_MS + TWO_MIN_IN_MS;
+
   return (
     <BrowserRouter>
       <Navbar />
       <ToastContainer />
       <Routes>
         <Route path="/" element={<Quizzes />} />
-        <Route path="/play/quiz" element={<PlayQuiz />} />
         <Route path="/quiz/payment" element={<PaidQuiz />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/quiz/:id" element={<QuizDetails />} />
+        <Route
+          path="/play/quiz"
+          element={
+            <PrivateRoutes>
+              <PlayQuiz />
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path="/quiz/result"
+          element={
+            <PrivateRoutes>
+              <QuizResult />
+            </PrivateRoutes>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

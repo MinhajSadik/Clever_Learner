@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { addQuiz } from "../../redux/features/quizSlice";
-// import classes from "../../styles/AddQuiz.module.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { addQuiz } from "../../redux/features/quizSlice";
 
 const AddQuiz = ({ id }) => {
   const navigate = useNavigate();

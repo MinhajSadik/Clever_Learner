@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "../../styles/Timer.module.css";
 
-const QuizTimer = ({ duration, time, setTime }) => {
+const QuizTimer = ({ duration, setShowNext }) => {
+  const [time, setTime] = useState();
   useEffect(() => {
     var durations;
     if (duration === "quiz_based") {
@@ -9,8 +10,6 @@ const QuizTimer = ({ duration, time, setTime }) => {
     } else if (duration === "question_based") {
       durations = 2;
     }
-
-    console.log(durations === 0);
 
     let endTime = new Date();
 
@@ -36,10 +35,15 @@ const QuizTimer = ({ duration, time, setTime }) => {
       if (min === 0 && sec === 0) {
         clearInterval(interval);
       }
+
+      if (min === 0 && sec === 0) {
+        setShowNext(false);
+      }
+
       setTime(newValue);
     }, 1000);
     return () => clearInterval(interval);
-  }, [duration, setTime]);
+  }, [duration, setShowNext]);
 
   let formatNumber = (num) => {
     return num.toLocaleString("en-US", {

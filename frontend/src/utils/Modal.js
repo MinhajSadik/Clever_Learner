@@ -1,49 +1,44 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
+import Confetti from "react-confetti";
 
-function Model() {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+const Modal = ({ correct }) => {
+  const quiz = JSON.parse(localStorage.getItem("quiz"));
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  let score = ((correct / quiz.questions.length) * 100).toFixed(0);
+  const closeModal = () => {
+    setIsOpenModal(false);
+    // setIndex(0);
+    // setCorrect(0);
+    // setWaiting(true);
+  };
 
   return (
     <>
-      <Button className="text bg-purple-600" onClick={handleShow}>
-        Add Quiz
-      </Button>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="name@example.com"
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
+      {isOpenModal && (
+        <div className="absolute top-0 left-0 h-screen w-full flex items-center bg-[rgba(0,0,0,.5)]">
+          {score > 40 && <Confetti />}
+          <div className=" text-center bg-white p-8 mx-auto rounded-lg max-w-[600px] w-11/12">
+            <h4 className="text-3xl pb-3 text-center font-bold">
+              Your score is{" "}
+              <span className={score > 40 ? "text-green-600" : "text-red-600"}>
+                {score}%
+              </span>
+            </h4>
+            <p className="py-2">
+              You got {correct}/{quiz.questions.length}
+            </p>
+            {score > 40 && <p className="py-2 font-medium">Congrats!!!</p>}
+            <button
+              className="bg-yellow-600 py-2 px-7 rounded-xl text-white mt-2 hover:bg-yellow-500"
+              onClick={closeModal}
             >
-              <Form.Label>Example textarea</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={handleClose}>Close</Button>
-          <Button onClick={handleClose}>Save Changes</Button>
-        </Modal.Footer>
-      </Modal>
+              Play Again
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
-}
+};
 
-export default Model;
+export default Modal;

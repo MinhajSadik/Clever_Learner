@@ -1,26 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { BsCheckCircleFill, BsXCircleFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Loading from "../Shared/Loading";
+import QuizResult from "./QuizResult";
 import QuizTimer from "./QuizTimer";
 
 const PlayQuiz = () => {
   const quiz = JSON.parse(localStorage.getItem("quiz"));
+  const length = quiz.questions.length;
+  const question_based = quiz.answerType === "question_based";
+  const quiz_based = quiz.answerType === "quiz_based";
   const { user, loading } = useSelector((state) => ({
     ...state.user,
   }));
-  const [num, setNum] = useState(0);
+
+  const [index, setIndex] = useState(0);
   const admin = user?.user?.role === "admin";
   const [ans, setAns] = useState([]);
   const [showResult, setShowResult] = useState(false);
   const [submitQuiz, setSubmitQuiz] = useState(false);
-  const [disable, setDisable] = useState(null);
-  const [showNext, setShowNext] = useState(false);
-  const [time, setTime] = useState();
+  const [showNext, setShowNext] = useState(true);
+  const [timeStart, setTimeStart] = useState(false);
 
-  const handleQue = (index) => {
-    setDisable(index);
-  };
+  useEffect(() => {
+    setTimeStart(true);
+  }, [index]);
 
   return (
     <>
@@ -32,51 +37,68 @@ const PlayQuiz = () => {
             <div className="w-full shadow m-10 p-4 ml-12">
               <div className="flex justify-between align-middle">
                 <div className="flex w-4/5 pl-24 ml-12">
-                  <h1 className="text-2xl m-2 text-black-400/25">{num + 1}.</h1>
                   <h1 className="text-2xl m-2 text-black-400/25">
-                    {quiz.questions[num].question}
+                    {index + 1}.
+                  </h1>
+                  <h1 className="text-2xl m-2 text-black-400/25">
+                    {quiz.questions[index].question}
                   </h1>
                 </div>
 
                 {admin && (
                   <p className="border-teal-500 rounded-2xl absolute right-16 top-20 border-2 mb-8 p-1 pl-3 pr-2">
-                    Attempted : {num + "/" + quiz.questions.length}
+                    Attempted : {index + "/" + length}
                   </p>
                 )}
                 <div className=" font-serif text-slate-900">
                   <div className="flex text-center">
                     <p className="border-teal-500 rounded-2xl border-2 mb-8 p-1 pl-3 pr-2 w-48 h-10 bg-blue-200 mr-2">
-                      Time Left:
-                      {quiz.questions.length && (
-                        <QuizTimer
-                          duration={quiz.answerType}
-                          time={time}
-                          setTime={setTime}
-                        />
+                      {question_based ? (
+                        <>
+                          Time Left:
+                          {timeStart && (
+                            <QuizTimer
+                              duration={quiz.answerType}
+                              setShowNext={setShowNext}
+                            />
+                          )}
+                        </>
+                      ) : (
+                        <>{<QuizTimer />}</>
                       )}
                     </p>
                     <p className="border-teal-500 rounded-2xl border-2 mb-8 p-1 pl-3 pr-2 w-48 h-10">
-                      Questions: {num + "/" + quiz.questions.length}
+                      Questions: {index + "/" + length}
                     </p>
                   </div>
                 </div>
               </div>
-              <ol className=" w-3/5 ml-64" disabled={disable}>
-                {quiz.questions[num].options?.map((option, index) => (
+              {showResult && <QuizResult />}
+              <ol className=" w-3/5 ml-64">
+                {quiz.questions[index].options?.map((option, i) => (
                   <li
-                    key={index}
+                    key={i}
                     className={
-                      index === disable && disable != null
-                        ? "show border border-gray-300 cursor-pointer m-2 p-2 rounded-lg"
-                        : `notshow border border-gray-300 cursor-pointer m-2 p-2 rounded-lg`
+                      "border border-gray-300 cursor-pointer m-2 p-2 rounded-lg flex justify-between items-center"
                     }
                     onClick={(e) => {
                       setAns([...ans, option.option]);
-                      handleQue(index);
                       setShowNext(true);
+                      setTimeStart(false);
+                      if (length - 1 === index) {
+                        setSubmitQuiz(true);
+                      } else {
+                        setIndex((prevIndex) => prevIndex + 1);
+                      }
                     }}
                   >
                     👉 {option.option}
+                    {option.isCorrect && question_based && !timeStart && (
+                      <BsCheckCircleFill />
+                    )}
+                    {!option.isCorrect && question_based && !timeStart && (
+                      <BsXCircleFill />
+                    )}
                   </li>
                 ))}
               </ol>
@@ -85,11 +107,10 @@ const PlayQuiz = () => {
                   <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1"
                     onClick={() => {
-                      setNum(num + 1);
-                      setDisable(null);
-                      setShowNext(false);
-                      if (quiz.questions.length - 2 === num) {
+                      if (length - 1 === index) {
                         setSubmitQuiz(true);
+                      } else {
+                        setIndex((prevIndex) => prevIndex + 1);
                       }
                     }}
                   >
@@ -112,9 +133,7 @@ const PlayQuiz = () => {
                   <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded mr-1"
                     onClick={() => {
-                      if (quiz.questions.length - 2 === num) {
-                        setSubmitQuiz(true);
-                      }
+                      setShowResult(true);
                     }}
                   >
                     Submit

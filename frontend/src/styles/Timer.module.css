@@ -10,6 +10,7 @@
   background: #343a40;
   border: 1px solid #343a40;
   user-select: none;
+  margin-left: 3px;
 }
 
 .minutes {
@@ -24,4 +25,6 @@
   background: #343a40;
   border: 1px solid #343a40;
   user-select: none;
+  margin-left: 3px;
+  margin-right: 3px;
 }
