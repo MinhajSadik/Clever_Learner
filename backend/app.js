@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import express from "express";
 import fileUpload from "express-fileupload";
 import morgan from "morgan";
+import path from "path";
+// import url from "url";
 import connectDB from "./DB/mdb.js";
 import errorMiddleware from "./middlewares/errors.js";
 
@@ -22,6 +24,15 @@ app.use(fileUpload({ useTempFiles: true }));
 app.all("/", (req, res) => {
   console.log("Hello clever learner console viewer");
   res.status(200).send("Hello clever learner API viewer");
+});
+
+// const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(import.meta.url);
+
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
 });
 
 //database init
