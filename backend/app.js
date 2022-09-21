@@ -26,15 +26,6 @@ app.all("/", (req, res) => {
   res.status(200).send("Hello clever learner API viewer");
 });
 
-// const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = path.dirname(import.meta.url);
-
-app.use(express.static(path.join(__dirname + "../frontend/build")));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname + "../frontend/public/index.html"));
-});
-
 //database init
 connectDB();
 
@@ -52,6 +43,15 @@ import userRoute from "./routes/userRoute.js";
 app.use("/api/user", userRoute);
 app.use("/api/quiz", quizRoute);
 app.use("/api/question", questionRoute);
+
+// const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(import.meta.url);
+
+app.use(express.static(path.join(__dirname + "../frontend/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname + "../frontend/public/index.html"));
+});
 
 //default middleware
 app.use(errorMiddleware);
