@@ -6,7 +6,7 @@ import express from "express";
 import fileUpload from "express-fileupload";
 import morgan from "morgan";
 import path from "path";
-// import url from "url";
+import url from "url";
 import connectDB from "./DB/mdb.js";
 import errorMiddleware from "./middlewares/errors.js";
 
@@ -44,13 +44,16 @@ app.use("/api/user", userRoute);
 app.use("/api/quiz", quizRoute);
 app.use("/api/question", questionRoute);
 
-// const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = path.dirname(import.meta.url);
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-app.use(express.static(path.join(__dirname + "../frontend/build")));
+// app.use(express.static(path.join(__dirname + "../frontend/public")));
+app.use(express.static(path.join(__dirname, "frontend", "build")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname + "../frontend/public/index.html"));
+  // res.sendFile(path.resolve(__dirname + "../frontend/build/index.html"));
+  // res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
+  res.sendFile("index.html", { root: "public" });
 });
 
 //default middleware

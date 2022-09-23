@@ -11,6 +11,7 @@ const PlayQuiz = () => {
   const length = quiz.questions.length;
   const question_based = quiz.answerType === "question_based";
   const quiz_based = quiz.answerType === "quiz_based";
+
   const { user, loading } = useSelector((state) => ({
     ...state.user,
   }));
@@ -20,12 +21,28 @@ const PlayQuiz = () => {
   const [ans, setAns] = useState([]);
   const [showResult, setShowResult] = useState(false);
   const [submitQuiz, setSubmitQuiz] = useState(false);
-  const [showNext, setShowNext] = useState(true);
+  const [showNext, setShowNext] = useState(false);
   const [timeStart, setTimeStart] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
 
   useEffect(() => {
     setTimeStart(true);
+    setShowNext(false);
+    setShowAnswer(false);
   }, [index]);
+
+  const handleNext = () => {
+    if (length - 1 === index) {
+      setSubmitQuiz(true);
+    } else {
+      setTimeStart(false);
+      setIndex((prevIndex) => prevIndex + 1);
+    }
+  };
+
+  const handleSubmit = () => {
+    setShowResult(true);
+  };
 
   return (
     <>
@@ -53,18 +70,26 @@ const PlayQuiz = () => {
                 <div className=" font-serif text-slate-900">
                   <div className="flex text-center">
                     <p className="border-teal-500 rounded-2xl border-2 mb-8 p-1 pl-3 pr-2 w-48 h-10 bg-blue-200 mr-2">
+                      Time Left:
                       {question_based ? (
                         <>
-                          Time Left:
-                          {timeStart && (
+                          {!showNext && !submitQuiz && (
                             <QuizTimer
                               duration={quiz.answerType}
-                              setShowNext={setShowNext}
+                              setIndex={setIndex}
+                              index={index}
+                              length={length}
+                              setTimeStart={setTimeStart}
+                              setSubmitQuiz={setSubmitQuiz}
                             />
                           )}
                         </>
                       ) : (
-                        <>{<QuizTimer />}</>
+                        <>
+                          {!submitQuiz && (
+                            <QuizTimer duration={quiz.answerType} />
+                          )}
+                        </>
                       )}
                     </p>
                     <p className="border-teal-500 rounded-2xl border-2 mb-8 p-1 pl-3 pr-2 w-48 h-10">
@@ -83,20 +108,20 @@ const PlayQuiz = () => {
                     }
                     onClick={(e) => {
                       setAns([...ans, option.option]);
-                      setShowNext(true);
                       setTimeStart(false);
+                      setShowAnswer(true);
                       if (length - 1 === index) {
                         setSubmitQuiz(true);
                       } else {
-                        setIndex((prevIndex) => prevIndex + 1);
+                        setShowNext(true);
                       }
                     }}
                   >
                     👉 {option.option}
-                    {option.isCorrect && question_based && !timeStart && (
+                    {option.isCorrect && question_based && showAnswer && (
                       <BsCheckCircleFill />
                     )}
-                    {!option.isCorrect && question_based && !timeStart && (
+                    {!option.isCorrect && question_based && showAnswer && (
                       <BsXCircleFill />
                     )}
                   </li>
@@ -106,13 +131,7 @@ const PlayQuiz = () => {
                 {!submitQuiz && showNext && (
                   <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1"
-                    onClick={() => {
-                      if (length - 1 === index) {
-                        setSubmitQuiz(true);
-                      } else {
-                        setIndex((prevIndex) => prevIndex + 1);
-                      }
-                    }}
+                    onClick={handleNext}
                   >
                     Next
                   </button>
@@ -132,9 +151,7 @@ const PlayQuiz = () => {
                 {submitQuiz && (
                   <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded mr-1"
-                    onClick={() => {
-                      setShowResult(true);
-                    }}
+                    onClick={handleSubmit}
                   >
                     Submit
                   </button>

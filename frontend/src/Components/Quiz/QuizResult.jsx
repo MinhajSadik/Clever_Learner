@@ -9,7 +9,7 @@ const QuizResult = ({ correct }) => {
     <>
       <div className="absolute top-0 left-0 h-screen w-full flex items-center bg-[rgba(0,0,0,.5)]">
         <Confetti />
-
+        <Confetti />
         <div className=" text-center bg-white p-8 mx-auto rounded-lg max-w-[600px] w-11/12">
           <h4 className="text-3xl pb-3 text-center font-bold">
             Your score is{" "}
