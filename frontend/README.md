@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Develop a dynamic quiz system
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project features
 
-## Available Scripts
+There are two sides of the projects. Admin and User Admin can do the bellow tasks
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Manage users
+2. Create paid and unpaid quizzes
+3. Manage quizzes
+4. Manage and see quiz data for example number of submissions,
+   results, grades etc
+5. Quiz will have these data : Quiz name, quiz picture, descriptions,
+   free or paid and quiz questions with their options.
+6. See quiz payments transactions and refund someone fully if
+   needed.
+7. Total paid and unpaid users and revenue
+   Quiz settings =>
+   Admin will need to set up bellow settings for a quiz
+8. Add n number of quizes with n number of options
+9. Mark one or more options as answers. If there are more than one
+   answer, user have to choose all the answers to get it right.
+10. Quiz can have 2 types of timing. A. Per question wise timing B.
+    Whole quiz wise timing. For example, if admin choose per question based timing then he can set a timer per question. All questions then will have same timer. If admin set 5min per question then all questions should have same timing. Timing will reset for every new question fetched. If timer is set whole quiz wise then it will be more like exam hall where you have to submit your paper within the time. If time becomes 0 for both cases question must be auto submitted
+11. Admin can set up if user can see answers as they submit the quiz or they need to wait until the end of the quiz questions
+12. Admin can set if user can see their correct answers as they submit a quiz answer or they have to wait until the end of the all questions
+13. Admin can set number of retake a user can take.
+14. Admin can set if users should see the answer at the end of
+    submission, or as they answer the question or they cannot see
+    until all retake is taken
+15. Answer can be revealed after all the retake is taken or user can
+    choose himself to reveal the answer at the end of the quiz and this will have make a user’s available retake to 0 so that he cannot take any retake
+    User end ⇒
+16. Singup
+17. Login
+18. See avalable quiz lists and free or paid
+19. See total number of user took this quiz with the quiz listing
+20. User can enrol to a quiz and start submitting quiz answers based
+    on the settings from admin
+21. Quiz questions will be shown 1 at a time
+22. User can see their transactions and refunds if they have any
