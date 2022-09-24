@@ -18,7 +18,7 @@ const PlayQuiz = () => {
 
   const [index, setIndex] = useState(0);
   const admin = user?.user?.role === "admin";
-  const [ans, setAns] = useState([]);
+  const [answer, setAnswer] = useState([]);
   const [showResult, setShowResult] = useState(false);
   const [submitQuiz, setSubmitQuiz] = useState(false);
   const [showNext, setShowNext] = useState(false);
@@ -64,7 +64,7 @@ const PlayQuiz = () => {
 
                 {admin && (
                   <p className="border-teal-500 rounded-2xl absolute right-16 top-20 border-2 mb-8 p-1 pl-3 pr-2">
-                    Attempted : {index + "/" + length}
+                    Attempted :{index + "/" + length}
                   </p>
                 )}
                 <div className=" font-serif text-slate-900">
@@ -100,7 +100,7 @@ const PlayQuiz = () => {
                   </div>
                 </div>
               </div>
-              {showResult && <QuizResult ans={ans} />}
+              {showResult && <QuizResult answer={answer} />}
               <ol className=" w-3/5 ml-64">
                 {quiz.questions[index].options?.map((option, i) => (
                   <li
@@ -109,7 +109,7 @@ const PlayQuiz = () => {
                       "border border-gray-300 cursor-pointer m-2 p-2 rounded-lg flex justify-between items-center"
                     }
                     onClick={(e) => {
-                      setAns([...ans, option]);
+                      setAnswer([...answer, option]);
                       setTimeStart(false);
                       setShowAnswer(true);
                       if (length - 1 === index) {

@@ -22,12 +22,17 @@ const Quiz = ({ quiz }) => {
           </p>
         </div>
         <div className={classes.third}>
-          <p className="shadow-sm uppercase bg-green-300 rounded-md p-1">
-            {quiz.answerType}
+          <p className="text-black-400/25">
+            Show Answer:{" "}
+            <span className="uppercase shadow-sm bg-gray-800 text-white rounded-md p-1">
+              {quiz.answerType}
+            </span>
           </p>
-
-          <p className="shadow-sm uppercase bg-green-300 rounded-md p-1">
-            {quiz.duration}
+          <p className="text-black-400/25">
+            Quiz Duration:{" "}
+            <span className="uppercase shadow-sm bg-gray-800 text-white rounded-lg p-1">
+              {quiz.duration}
+            </span>
           </p>
         </div>
       </div>

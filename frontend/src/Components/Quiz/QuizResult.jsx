@@ -1,10 +1,10 @@
 import React from "react";
 import Confetti from "react-confetti";
 
-const QuizResult = ({ ans }) => {
+const QuizResult = ({ answer }) => {
   const quiz = JSON.parse(localStorage.getItem("quiz"));
-  const correct = ans.filter((a) => {
-    return a.isCorrect;
+  const correct = answer.filter((ans) => {
+    return ans.isCorrect;
   });
 
   let score = ((correct.length / quiz.questions.length) * 100).toFixed(0);

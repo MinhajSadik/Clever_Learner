@@ -1,11 +1,12 @@
 .quiz {
-  width: 96%;
+  width: 98%;
   height: 98%;
   background-color: #fff;
   border: 1px solid #e5e5e5;
   padding: 0.5rem;
   border-radius: 4px;
   cursor: pointer;
+  margin-bottom: 5rem;
 }
 
 .quiz:hover {
@@ -40,24 +41,21 @@
 .second {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 5px;
+  /* padding-bottom: 5px; */
 }
 
 .second p {
-  font-size: 100%;
+  font-size: 15px;
   font-weight: 400;
 }
 
 .third {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
-.action {
-  display: flex;
-}
-
-.action button {
+.third p {
   font-size: 15px;
   font-weight: 400;
 }
@@ -65,5 +63,6 @@
 @media only screen and (max-width: 600px) {
   .quiz {
     width: 100%;
+    height: fit-content;
   }
 }

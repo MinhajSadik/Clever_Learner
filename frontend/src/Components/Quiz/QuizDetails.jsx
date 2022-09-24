@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getQuizById } from "../../redux/features/quizSlice";
+import classes from "../../styles/QuizDetails.module.css";
 import Loading from "../Shared/Loading";
 import { AddQuestion } from "./AddQuestion";
 
@@ -34,57 +35,79 @@ const QuizDetails = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div>
-          <div className=" w-11/12 h-96 pt-5 mt-5 bg-white">
-            <div className="flex justify-center">
-              {admin && <AddQuestion quizId={quiz._id} />}
-            </div>
-            <div className="w-full shadow m-10 p-4 ml-12 flex items-center">
-              <div className="">
-                <img className="w-96" src={quiz.image?.url} alt="quizImage" />
+        <div className=" min-h-full grid place-items-center font-mono bg-white">
+          <div className="flex justify-center my-5">
+            {admin && <AddQuestion quizId={quiz._id} />}{" "}
+          </div>
+          <div className="rounded-md bg-gray-800 shadow-lg my-3">
+            <div className="md:flex px-4 leading-none max-w-4xl">
+              <div className="flex-none ">
+                <img
+                  src={quiz?.image?.url}
+                  alt={quiz.name}
+                  className="h-72 w-56 rounded-md transform -translate-y-4 border-4 border-gray-300 shadow-lg"
+                />
               </div>
-              <div className="flex flex-col justify-center w-4/5 ml-52 ">
-                <h1 className="text-2xl m-2 text-black-400/25">
-                  Quiz Name :
-                  <span className="uppercase shadow-sm m-1 text-center w-32 h-8 bg-blue-400 rounded-md p-1">
-                    {quiz.name}
-                  </span>
-                </h1>
-                <p className="m-2 text-black-400/25">
-                  Quiz Description :
-                  <span className="uppercase shadow-sm m-1 text-center w-20 h-8 bg-blue-400 rounded-md p-1">
-                    {quiz.description}
-                  </span>
-                </p>
-                <p className="m-2 text-black-400/25">
-                  Quiz Price :
-                  <span className="uppercase shadow-sm m-1 text-center w-20 h-8 bg-blue-400 rounded-full p-1">
+
+              <div className="flex-col text-gray-300">
+                <p className="pt-4 text-2xl font-bold px-4">{quiz.name}</p>
+                <hr className={classes.hr_text} data-content="" />
+                <div className="text-md flex justify-between px-4 my-2">
+                  <span className="font-bold">{quiz.description}</span>
+                  <span className="font-bold border px-2 py-2">
                     ${quiz.price}
                   </span>
+                </div>
+                <p className="hidden md:block px-4 my-4 text-sm text-left">
+                  In Gotham City, mentally troubled comedian Arthur Fleck is
+                  disregarded and mistreated by society. He then embarks on a
+                  downward spiral of revolution and bloody crime. This path
+                  brings him face-to-face with his alter-ego: the Joker.{" "}
                 </p>
-                <p className="m-2 text-black-400/25">
-                  Quiz Time :
-                  <span className="uppercase shadow-sm m-1 text-center w-20 h-8 bg-blue-400 rounded-md p-1">
-                    {quiz.duration}
+
+                <p className="flex text-md px-4 my-3">
+                  Rating: 9.0/10
+                  <span className="font-bold px-2">|</span>
+                  Mood: Dark
+                </p>
+
+                <div className="text-xs md:flex px-4">
+                  <span
+                    type="button"
+                    className="border uppercase border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-white hover:text-black focus:outline-none focus:shadow-outline"
+                  >
+                    {quiz?.questions?.length} Questions
                   </span>
-                </p>
-                <p className="m-2 text-black-400/25">
-                  Show Answer :
-                  <span className="uppercase shadow-sm text-center w-20 h-8 bg-blue-400 rounded-md p-1">
+                  <span
+                    type="button"
+                    className="border uppercase border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-white hover:text-black focus:outline-none focus:shadow-outline"
+                  >
                     {quiz.answerType}
                   </span>
-                </p>
-                <p className="m-2 text-black-400/25">
-                  Questions :
-                  <span className="uppercase shadow-sm m-3 text-center w-32 h-8 bg-yellow-400 rounded-md p-1">
-                    {quiz.questions?.length}
+
+                  <span
+                    type="button"
+                    className="border uppercase border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-white hover:text-black focus:outline-none focus:shadow-outline"
+                  >
+                    {quiz.duration}
                   </span>
-                </p>
+                </div>
               </div>
-              <div className="flex justify-center items-center rounded-full  text-white bg-black w-20 h-10">
-                <button type="button" onClick={startQuiz}>
+              <div className="flex justify-center items-center">
+                <button
+                  type="button"
+                  onClick={startQuiz}
+                  className="bg-black text-white w-auto rounded-md px-2 py-2 my-3"
+                >
                   start
                 </button>
+                {/* <button
+                  type="button"
+                  onClick={startQuiz}
+                  className="bg-black text-white w-auto rounded-md px-2 py-2 my-3"
+                >
+                  start
+                </button> */}
               </div>
             </div>
           </div>

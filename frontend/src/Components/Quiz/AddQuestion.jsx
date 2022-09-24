@@ -57,7 +57,7 @@ export const AddQuestion = ({ quizId }) => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header>
-          <Modal.Title>Upload quiz-relevant questions for quiz. </Modal.Title>
+          <Modal.Title>Upload relevant of quiz questions.</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
