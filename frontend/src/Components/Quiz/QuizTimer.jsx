@@ -6,14 +6,14 @@ const QuizTimer = ({
   setIndex,
   index,
   length,
-  setTimeStart,
   setSubmitQuiz,
+  setShowResult,
 }) => {
   const [time, setTime] = useState();
   useEffect(() => {
     var durations;
     if (duration === "quiz_based") {
-      durations = 40;
+      durations = 1;
     } else if (duration === "question_based") {
       durations = 1;
     }
@@ -39,22 +39,33 @@ const QuizTimer = ({
           <span className={classes.seconds}>{formatNumber(sec)}</span>
         </>
       );
-      if (min === 0 && sec === 0) {
-        clearInterval(interval);
+
+      if (min === 0 && sec === 0 && duration === "quiz_based") {
+        setShowResult(true);
+        // clearInterval(interval);
       }
 
       if (length - 1 === index && min === 0 && sec === 0) {
-        setSubmitQuiz(true);
+        return setSubmitQuiz(true);
       }
 
-      if (min === 0 && sec === 0 && length - 1 !== index) {
-        setIndex(index + 1);
+      if (
+        min === 0 &&
+        sec === 0 &&
+        length - 1 !== index &&
+        duration !== "quiz_based"
+      ) {
+        return setIndex(index + 1);
+      }
+
+      if (min === 0 && sec === 0) {
+        return clearInterval(interval);
       }
 
       setTime(newValue);
     }, 1000);
     return () => clearInterval(interval);
-  }, [duration, setIndex, index, length, setTimeStart, setSubmitQuiz]);
+  }, [duration, setIndex, index, length, setSubmitQuiz, setShowResult]);
 
   let formatNumber = (num) => {
     return num.toLocaleString("en-US", {

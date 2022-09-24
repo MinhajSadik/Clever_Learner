@@ -44,6 +44,8 @@ const PlayQuiz = () => {
     setShowResult(true);
   };
 
+  console.log(showResult);
+
   return (
     <>
       {loading ? (
@@ -79,15 +81,17 @@ const PlayQuiz = () => {
                               setIndex={setIndex}
                               index={index}
                               length={length}
-                              setTimeStart={setTimeStart}
                               setSubmitQuiz={setSubmitQuiz}
                             />
                           )}
                         </>
                       ) : (
                         <>
-                          {!submitQuiz && (
-                            <QuizTimer duration={quiz.answerType} />
+                          {!submitQuiz && !showResult && (
+                            <QuizTimer
+                              duration={quiz.answerType}
+                              setShowResult={setShowResult}
+                            />
                           )}
                         </>
                       )}
@@ -98,7 +102,7 @@ const PlayQuiz = () => {
                   </div>
                 </div>
               </div>
-              {showResult && <QuizResult />}
+              {showResult && <QuizResult ans={ans} />}
               <ol className=" w-3/5 ml-64">
                 {quiz.questions[index].options?.map((option, i) => (
                   <li
@@ -107,7 +111,7 @@ const PlayQuiz = () => {
                       "border border-gray-300 cursor-pointer m-2 p-2 rounded-lg flex justify-between items-center"
                     }
                     onClick={(e) => {
-                      setAns([...ans, option.option]);
+                      setAns([...ans, option]);
                       setTimeStart(false);
                       setShowAnswer(true);
                       if (length - 1 === index) {

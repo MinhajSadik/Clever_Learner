@@ -1,10 +1,10 @@
 import React from "react";
 import Confetti from "react-confetti";
 
-const QuizResult = ({ correct }) => {
+const QuizResult = ({ correct, ans }) => {
   const quiz = JSON.parse(localStorage.getItem("quiz"));
   let score = ((correct / quiz.questions.length) * 100).toFixed(0);
-
+  console.log(ans.map((a) => a.isCorrect));
   return (
     <>
       <div className="absolute top-0 left-0 h-screen w-full flex items-center bg-[rgba(0,0,0,.5)]">
