@@ -8,7 +8,7 @@ export const loginUser = createAsyncThunk(
     try {
       const { data } = await api.loginUser(loginInfo);
       navigate(-2);
-      toast.success("Logged In Successed");
+      toast.success("LoggedIn Successed");
       return data;
     } catch (error) {
       toast.error(error);
@@ -22,7 +22,7 @@ export const registerUser = createAsyncThunk(
   async ({ registerInfo, navigate, toast }, { rejectWithValue }) => {
     try {
       const { data } = await api.registerUser(registerInfo);
-      navigate(-2);
+      navigate("/");
       toast.success("Register Successed");
       return data;
     } catch (error) {

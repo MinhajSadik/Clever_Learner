@@ -39,7 +39,7 @@ const Quizzes = () => {
               <AddQuiz quizzes={quizzes} />
             </div>
           )}
-          <div className="grid grid-cols-5 gap-1">
+          <div className="grid grid-cols-1 md:grid-cols-5 mt-3 md:ml-3">
             {quizzes.map((quiz) => (
               <Quiz key={quiz._id} quiz={quiz} />
             ))}

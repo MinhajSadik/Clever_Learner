@@ -21,6 +21,15 @@ const Quiz = ({ quiz }) => {
             ${quiz.price}
           </p>
         </div>
+        <div className={classes.third}>
+          <p className="shadow-sm uppercase bg-green-300 rounded-md p-1">
+            {quiz.answerType}
+          </p>
+
+          <p className="shadow-sm uppercase bg-green-300 rounded-md p-1">
+            {quiz.duration}
+          </p>
+        </div>
       </div>
     </Link>
   );

@@ -10,7 +10,7 @@ const PlayQuiz = () => {
   const quiz = JSON.parse(localStorage.getItem("quiz"));
   const length = quiz.questions.length;
   const question_based = quiz.answerType === "question_based";
-  const quiz_based = quiz.answerType === "quiz_based";
+  // const quiz_based = quiz.answerType === "quiz_based";
 
   const { user, loading } = useSelector((state) => ({
     ...state.user,
@@ -43,8 +43,6 @@ const PlayQuiz = () => {
   const handleSubmit = () => {
     setShowResult(true);
   };
-
-  console.log(showResult);
 
   return (
     <>

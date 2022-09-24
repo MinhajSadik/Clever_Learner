@@ -1,12 +1,11 @@
 .quiz {
-  width: 90%;
+  width: 96%;
   height: 98%;
   background-color: #fff;
   border: 1px solid #e5e5e5;
   padding: 0.5rem;
   border-radius: 4px;
   cursor: pointer;
-  margin: 0.8rem;
 }
 
 .quiz:hover {
@@ -45,14 +44,17 @@
 }
 
 .second p {
-  font-size: 15px;
+  font-size: 100%;
   font-weight: 400;
+}
+
+.third {
+  display: flex;
+  flex-direction: column;
 }
 
 .action {
   display: flex;
-  justify-content: flex-end;
-  padding-right: 1px;
 }
 
 .action button {
