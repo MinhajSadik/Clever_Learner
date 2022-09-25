@@ -13,9 +13,9 @@ const QuizTimer = ({
   useEffect(() => {
     var durations;
     if (duration === "quiz_based") {
-      durations = 1;
+      durations = 40;
     } else if (duration === "question_based") {
-      durations = 1;
+      durations = 2;
     }
 
     let endTime = new Date();
@@ -42,7 +42,6 @@ const QuizTimer = ({
 
       if (min === 0 && sec === 0 && duration === "quiz_based") {
         setShowResult(true);
-        // clearInterval(interval);
       }
 
       if (length - 1 === index && min === 0 && sec === 0) {

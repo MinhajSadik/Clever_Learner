@@ -7,7 +7,7 @@ const QuizResult = ({ answer, length }) => {
   const quiz = JSON.parse(localStorage.getItem("quiz"));
   const quiz_type = quiz.answerType === "quiz_based";
   const [index, setIndex] = useState(0);
-  const [open, setOpen] = useState(false);
+  const [winner, setWinner] = useState(false);
   const correct = answer.filter((ans) => {
     return ans.isCorrect;
   });
@@ -20,7 +20,7 @@ const QuizResult = ({ answer, length }) => {
 
   const handleCheck = () => {
     if (length - 1 === index) {
-      setOpen(true);
+      setWinner(true);
     } else {
       setIndex((prevIndex) => prevIndex + 1);
     }
@@ -29,11 +29,9 @@ const QuizResult = ({ answer, length }) => {
   return (
     <>
       <div className="absolute top-0 left-0 h-screen w-full flex items-center bg-[rgba(0,0,0,.5)]">
-        {score > 40 && open && <Confetti />}
-        {score >= 60 && open && ((<Confetti />), (<Confetti />))}
-        {score >= 80 &&
-          open &&
-          ((<Confetti />), (<Confetti />), (<Confetti />))}
+        {score > 40 && <Confetti />}
+        {score >= 60 && ((<Confetti />), (<Confetti />))}
+        {score >= 80 && ((<Confetti />), (<Confetti />), (<Confetti />))}
         <div className=" text-center bg-white p-8 mx-auto rounded-lg max-w-[600px] w-11/12">
           <h4 className="text-3xl pb-3 text-center font-bold">
             Your score is{" "}
@@ -46,7 +44,7 @@ const QuizResult = ({ answer, length }) => {
           </p>
           {score > 40 && <p className="py-2 font-medium">Congrats!!!</p>}
 
-          {quiz_type && !open && (
+          {quiz_type && !winner && (
             <div>
               <div className="flex w-4/5 justify-center">
                 <h1 className="text-2xl m-2 text-black-400/25">{index + 1}.</h1>
@@ -65,15 +63,14 @@ const QuizResult = ({ answer, length }) => {
               </ol>
             </div>
           )}
-          {!open && (
+          {quiz_type && !winner ? (
             <button
               className="bg-yellow-600 py-2 px-7 rounded-xl text-white mt-2 hover:bg-yellow-500"
               onClick={handleCheck}
             >
               Check
             </button>
-          )}
-          {open && (
+          ) : (
             <button
               className="bg-yellow-600 py-2 px-7 rounded-xl text-white mt-2 hover:bg-yellow-500"
               onClick={handlePlayAgain}

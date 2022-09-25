@@ -85,7 +85,7 @@ const PlayQuiz = () => {
                         </>
                       ) : (
                         <>
-                          {!submitQuiz && !showResult && !showNext && (
+                          {!submitQuiz && !showResult && (
                             <QuizTimer
                               duration={quiz.answerType}
                               setShowResult={setShowResult}
