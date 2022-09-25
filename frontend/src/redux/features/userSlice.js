@@ -7,7 +7,7 @@ export const loginUser = createAsyncThunk(
   async ({ loginInfo, navigate, toast }, { rejectWithValue }) => {
     try {
       const { data } = await api.loginUser(loginInfo);
-      navigate(-2);
+      navigate(-1);
       toast.success("LoggedIn Successed");
       return data;
     } catch (error) {

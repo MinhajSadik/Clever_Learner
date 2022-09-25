@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch } from "react-redux";
-import { addQuestion } from "../../redux/features/questionSlice";
+import { addQuestion } from "../../redux/features/quizSlice";
 
 export const AddQuestion = ({ quizId }) => {
   const dispatch = useDispatch();
@@ -48,6 +48,8 @@ export const AddQuestion = ({ quizId }) => {
   };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  console.log(options);
 
   return (
     <div className="">
@@ -108,7 +110,7 @@ export const AddQuestion = ({ quizId }) => {
                       name="isCorrect"
                       id=""
                       v-model="allowMultiple"
-                      value={option.boolean}
+                      value={option.isCorrect}
                       onChange={(e) => {
                         handleType(option.id)(e);
                       }}

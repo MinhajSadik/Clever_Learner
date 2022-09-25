@@ -37,11 +37,37 @@ export const addQuiz = createAsyncThunk(
   }
 );
 
+export const allQuestion = createAsyncThunk(
+  "question/all",
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await api.allQuestion();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const addQuestion = createAsyncThunk(
+  "question/add",
+  async (questionInfo, { rejectWithValue }) => {
+    try {
+      const { data } = await api.addQuestion(questionInfo);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
 const quizSlice = createSlice({
   name: "quiz",
   initialState: {
     quiz: [],
     quizzes: [],
+    question: {},
+    questions: [],
     error: "",
     loading: false,
   },
@@ -78,6 +104,26 @@ const quizSlice = createSlice({
     },
     [addQuiz.rejected]: (state, { payload }) => {
       state.loading = false;
+      state.error = payload;
+    },
+    [allQuestion.pending]: (state) => {
+      state.loading = true;
+    },
+    [allQuestion.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.questions = payload;
+    },
+    [allQuestion.rejected]: (state, { payload }) => {
+      state.error = payload;
+    },
+    [addQuestion.pending]: (state) => {
+      state.loading = true;
+    },
+    [addQuestion.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.questions = [...state.questions, payload];
+    },
+    [addQuestion.rejected]: (state, { payload }) => {
       state.error = payload;
     },
   },
