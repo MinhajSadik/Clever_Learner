@@ -121,7 +121,7 @@ const quizSlice = createSlice({
     },
     [addQuestion.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.questions = [...state.questions, payload];
+      state.quiz.questions.push(...state.questions, payload);
     },
     [addQuestion.rejected]: (state, { payload }) => {
       state.error = payload;

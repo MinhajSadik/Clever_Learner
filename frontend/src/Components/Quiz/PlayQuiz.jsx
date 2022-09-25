@@ -85,7 +85,7 @@ const PlayQuiz = () => {
                         </>
                       ) : (
                         <>
-                          {!submitQuiz && !showResult && (
+                          {!submitQuiz && !showResult && !showNext && (
                             <QuizTimer
                               duration={quiz.answerType}
                               setShowResult={setShowResult}
@@ -100,7 +100,7 @@ const PlayQuiz = () => {
                   </div>
                 </div>
               </div>
-              {showResult && <QuizResult answer={answer} />}
+              {showResult && <QuizResult answer={answer} length={length} />}
               <ol className=" w-3/5 ml-64">
                 {quiz.questions[index].options?.map((option, i) => (
                   <li

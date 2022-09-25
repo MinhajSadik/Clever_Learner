@@ -49,8 +49,6 @@ export const AddQuestion = ({ quizId }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  console.log(options);
-
   return (
     <div className="">
       <Button className=" bg-blue-700 rounded-sm" onClick={handleShow}>
