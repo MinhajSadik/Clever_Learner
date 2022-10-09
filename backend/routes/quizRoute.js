@@ -7,5 +7,6 @@ const router = Router();
 router.post("/add", checkAuth, authorizeRoles("admin"), quizController.addQuiz);
 router.get("/all", quizController.allQuiz);
 router.get("/:id", quizController.quizById);
+router.post("/result", quizController.submitResult);
 
 export default router;

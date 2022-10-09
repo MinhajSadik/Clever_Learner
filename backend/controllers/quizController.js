@@ -1,5 +1,6 @@
 import cloudinary from "cloudinary";
 import Quiz from "../models/quizModel.js";
+import ResultModel from "../models/resultModel.js";
 import ErrorHandler from "../utils/errorHandler.js";
 
 //using class for quiz controller instance
@@ -69,6 +70,27 @@ class QuizController {
     } catch (error) {
       return res.status(500).json({
         status: false,
+        message: error.message,
+      });
+    }
+  }
+
+  async submitResult(req, res, next) {
+    try {
+      const result = await ResultModel.create(req.body);
+
+      if (!result) {
+        return res.status(401).json({
+          message: "There was an server side error",
+        });
+      }
+
+      return res.status(201).json({
+        message: "result submitted successfully",
+        result,
+      });
+    } catch (error) {
+      return res.status(500).json({
         message: error.message,
       });
     }

@@ -16,20 +16,11 @@ export const resultSchema = new Schema(
     },
     totalScore: {
       type: Number,
+      default: 0,
     },
     isPassed: {
       type: Boolean,
       default: false,
-    },
-    totalAttempt: {
-      type: Number,
-      default: 0,
-      validate: {
-        validator: function (value) {
-          return value === 3;
-        },
-        message: "You have already done three attempts.",
-      },
     },
   },
   {
