@@ -9,19 +9,17 @@ export function startTimer(duration) {
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
 
-    // display.textContent = minutes + ":" + seconds;
-
     if (--timer < 0) {
       timer = duration;
     }
   }, 1000);
 }
 
-// window.onload = function () {
-//   var fiveMinutes = 60 * 5,
-//     display = document.querySelector("#time");
-//   startTimer(fiveMinutes, display);
-// };
+window.onload = function () {
+  var fiveMinutes = 60 * 5,
+    display = document.querySelector("#time");
+  startTimer(fiveMinutes, display);
+};
 
 // function gradingStudents(grades) {
 //   let finalGrades = grades.map((grade) => {
@@ -35,10 +33,10 @@ export function startTimer(duration) {
 //   let count = 0;
 //   let result = 0;
 //   for (let step = 0; step < steps; step++) {
-//     if (count == 0 && strArr[step].toLowerCase() == "d") {
+//     if (count === 0 && strArr[step].toLowerCase() === "d") {
 //       count -= 1;
 //       result += 1;
-//     } else if (strArr[step].toLowerCase() == "d") {
+//     } else if (strArr[step].toLowerCase() === "d") {
 //       count -= 1;
 //     } else {
 //       count += 1;
@@ -48,13 +46,13 @@ export function startTimer(duration) {
 // }
 
 // function sockMerchant(n, ar) {
-// var res = 0;
-// ar.sort();
-// for (let i = 0; i < n; i++) {
-//   if (ar[i] == ar[i + 1]) {
-//     i++;
-//     res++;
+//   var res = 0;
+//   ar.sort();
+//   for (let i = 0; i < n; i++) {
+//     if (ar[i] === ar[i + 1]) {
+//       i++;
+//       res++;
+//     }
 //   }
-// }
-// return res;
+//   return res;
 // }

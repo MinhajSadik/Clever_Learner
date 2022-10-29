@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import classes from "../../styles/Timer.module.css";
+import classes from "../styles/Timer.module.css";
 
 const QuizTimer = ({
   duration,
@@ -11,7 +11,7 @@ const QuizTimer = ({
 }) => {
   const [time, setTime] = useState();
   useEffect(() => {
-    var durations;
+    let durations;
     if (duration === "quiz_based") {
       durations = 40;
     } else if (duration === "question_based") {

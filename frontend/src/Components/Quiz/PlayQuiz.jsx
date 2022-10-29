@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { BsCheckCircleFill, BsXCircleFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import QuizTimer from "../../utils/quizTimer";
 import Loading from "../Shared/Loading";
 import QuizResult from "./QuizResult";
-import QuizTimer from "./QuizTimer";
 
 const PlayQuiz = () => {
   const quiz = JSON.parse(localStorage.getItem("quiz"));
