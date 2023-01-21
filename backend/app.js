@@ -17,7 +17,9 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
-app.use(cors({ origin: "https://clever-learner-quiz.vercel.app" }));
+app.use(cors(
+  // { origin: "https://clever-learner-quiz.vercel.app" }
+));
 app.use(cookieParser());
 app.use(fileUpload({ useTempFiles: true }));
 
