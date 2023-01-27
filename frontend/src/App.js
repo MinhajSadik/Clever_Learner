@@ -25,9 +25,6 @@ const App = () => {
     }
   }, [user, dispatch]);
 
-  // const TWO_MIN_IN_MS = 60 * 1000 + 60 * 1000;
-  // const NOW_IN_MS = new Date().getTime();
-  // const dateTimeAfterTwoMin = NOW_IN_MS + TWO_MIN_IN_MS;
 
   return (
     <BrowserRouter>

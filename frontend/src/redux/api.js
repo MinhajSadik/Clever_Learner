@@ -5,20 +5,11 @@ const devEnv = process.env.NODE_ENV === "development";
 const { REACT_APP_DEV_API, REACT_APP_PROD_API } = process.env;
 
 const API = axios.create({
+  // baseURL: `${devEnv ? REACT_APP_DEV_API : REACT_APP_PROD_API}`,
   baseURL: REACT_APP_DEV_API,
   withCredentials: true,
-  // baseURL: `${devEnv ? REACT_APP_DEV_API : REACT_APP_PROD_API}`,
 });
 
-console.log(REACT_APP_DEV_API, REACT_APP_PROD_API, devEnv);
-
-// API.interceptors.request.use((req) => {
-//   if (sessionStorage.getItem("token")) {
-//     req.headers.Authorization = `Bearer ${JSON.parse(sessionStorage.getItem("token")).token
-//       }`;
-//   }
-//   return req;
-// });
 
 export const loginUser = (loginInfo) => API.post("/api/user/login", loginInfo);
 export const registerUser = (registerInfo) =>
