@@ -25,6 +25,24 @@ const userController = {
         password,
       });
 
+      const token = jwt.sign(
+        {
+          id: newUser._id,
+          name: newUser.name,
+          email: newUser.email,
+        },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: process.env.JWT_EXPIRE,
+        }
+      );
+
+      res.cookie("token", token, {
+        maxAge: 1000 * 60 * 60 * 24,
+        httpOnly: true,
+      });
+
+
       return res.status(201).send({
         status: true,
         user: newUser,
@@ -71,9 +89,14 @@ const userController = {
         }
       );
 
+      res.cookie("token", token, {
+        maxAge: 1000 * 60 * 60 * 24,
+        httpOnly: true,
+      });
+
+
       return res.status(200).json({
         status: true,
-        token,
         user,
       });
     } catch (error) {

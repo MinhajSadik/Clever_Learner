@@ -4,8 +4,7 @@ import ErrorHandler from "../utils/errorHandler.js";
 
 export const checkAuth = async (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(" ")[1];
-    // const token = req.headers;
+    const { token } = req.cookies
 
     if (!token) {
       return next(
@@ -13,7 +12,7 @@ export const checkAuth = async (req, res, next) => {
       );
     }
 
-    const decoded = jwt.verify(token.toString(), process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     req.user = await User.findById(decoded.id);
 
