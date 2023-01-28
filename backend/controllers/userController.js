@@ -85,12 +85,14 @@ const userController = {
         },
         process.env.JWT_SECRET,
         {
-          expiresIn: process.env.JWT_EXPIRE,
+          expiresIn: process.env.JWT_COOKIE_EXPIRES_IN,
         }
       );
 
+      console.log({ token })
+
       res.cookie("token", token, {
-        maxAge: 1000 * 60 * 60 * 24,
+        maxAge: 1000 * 60 * 60 * 24 * 3,
         httpOnly: true,
       });
 
