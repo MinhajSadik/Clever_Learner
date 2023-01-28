@@ -6,7 +6,7 @@ const { REACT_APP_DEV_API, REACT_APP_PROD_API } = process.env;
 
 const API = axios.create({
   // baseURL: `${devEnv ? REACT_APP_DEV_API : REACT_APP_PROD_API}`,
-  baseURL: REACT_APP_DEV_API,
+  baseURL: REACT_APP_PROD_API,
   withCredentials: true,
 });
 
