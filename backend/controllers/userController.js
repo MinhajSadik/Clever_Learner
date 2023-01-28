@@ -97,7 +97,7 @@ const userController = {
         httpOnly: true,
         sameSite: "none",
         secure: true,
-        domain: "https://backend-minhajsadik.vercel.app",
+        domain: "http://localhost:3000"
       });
       // domain: process.env.NODE_ENV === 'development' ? '.localhost' : '.domain.com'
 
