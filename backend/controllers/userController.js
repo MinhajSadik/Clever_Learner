@@ -96,8 +96,10 @@ const userController = {
         maxAge: 1000 * 60 * 60 * 24 * 3,
         httpOnly: true,
         sameSite: "none",
-        secure: true
+        secure: true,
+        domain: "https://backend-minhajsadik.vercel.app",
       });
+      // domain: process.env.NODE_ENV === 'development' ? '.localhost' : '.domain.com'
 
 
       return res.status(200).json({
